@@ -44,13 +44,23 @@ tailwind.config = {
 <!-- ════════════════════════════════════════════════════════ -->
 <!--  HERO                                                    -->
 <!-- ════════════════════════════════════════════════════════ -->
-<section id="hero" class="relative min-h-screen flex flex-col bg-grid noise overflow-hidden">
+<section id="hero" class="relative min-h-screen flex flex-col noise overflow-hidden">
+
+  <!-- Video background -->
+  <video autoplay muted loop playsinline
+    class="absolute inset-0 w-full h-full object-cover"
+    style="z-index:0;">
+    <source src="assets/hero-bg.mp4" type="video/mp4">
+  </video>
+
+  <!-- Dark overlay -->
+  <div class="absolute inset-0" style="background:rgba(8,8,8,.62); z-index:1;"></div>
 
   <!-- Radial glows -->
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] pointer-events-none"
-    style="background: radial-gradient(ellipse at center, rgba(99,102,241,.09) 0%, transparent 70%);"></div>
+    style="z-index:3; background: radial-gradient(ellipse at center, rgba(99,102,241,.09) 0%, transparent 70%);"></div>
   <div class="absolute bottom-0 left-0 w-[600px] h-[400px] pointer-events-none"
-    style="background: radial-gradient(ellipse at left bottom, rgba(167,139,250,.06) 0%, transparent 70%);"></div>
+    style="z-index:3; background: radial-gradient(ellipse at left bottom, rgba(167,139,250,.06) 0%, transparent 70%);"></div>
 
   <!-- Status bar -->
   <div class="relative z-10 flex justify-between items-center px-6 md:px-14 pt-7">
