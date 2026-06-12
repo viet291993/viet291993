@@ -1,0 +1,88 @@
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: #080808; color: #E1E0CC; overflow-x: hidden; }
+
+/* ── Subtle grid ── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(225,224,204,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225,224,204,.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ── Noise overlay ── */
+.noise::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .035; mix-blend-mode: overlay; pointer-events: none; z-index: 0;
+}
+
+/* ── Hero initial hidden state (prevents flash before GSAP) ── */
+#hero-name-1, #hero-name-2 { opacity: 0; transform: translateY(90px); }
+#hero-pre, #hero-contact, #hero-scroll { opacity: 0; }
+#hero-line { width: 0; }
+
+/* ── Word pull-up clip ── */
+.clip-word { display: inline-block; overflow: hidden; vertical-align: bottom; line-height: 0.88; }
+.clip-inner { display: inline-block; will-change: transform, opacity; }
+
+/* ── Char reveal ── */
+.char { display: inline; opacity: 0.14; transition: opacity .1s ease; }
+
+/* ── Section label ── */
+.sec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: rgba(225,224,204,.3);
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  opacity: 0;
+}
+
+/* ── Chip base ── */
+.chip {
+  display: inline-flex; align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(225,224,204,.08);
+  background: rgba(225,224,204,.03);
+  color: rgba(225,224,204,.48);
+  transition: border-color .15s, color .15s, background .15s;
+  cursor: default;
+}
+.chip:hover { border-color: rgba(225,224,204,.2); color: rgba(225,224,204,.8); background: rgba(225,224,204,.06); }
+.chip-i  { border-color: rgba(99,102,241,.28);  background: rgba(99,102,241,.07);  color: rgba(165,180,252,.95); }
+.chip-i:hover { border-color: rgba(99,102,241,.55); }
+.chip-ip { border-color: rgba(99,102,241,.45) !important; background: rgba(99,102,241,.14) !important; color: #a5b4fc !important; }
+.chip-g  { border-color: rgba(16,185,129,.28); background: rgba(16,185,129,.07); color: rgba(52,211,153,.9); }
+.chip-g:hover { border-color: rgba(16,185,129,.5); }
+.chip-p  { border-color: rgba(167,139,250,.28); background: rgba(167,139,250,.07); color: rgba(196,181,253,.9); }
+.chip-p:hover { border-color: rgba(167,139,250,.5); }
+
+/* ── Animated elements initial state ── */
+.exp-card { opacity: 0; }
+.project-card { opacity: 0; }
+.footer-col { opacity: 0; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #080808; }
+::-webkit-scrollbar-thumb { background: rgba(225,224,204,.18); border-radius: 2px; }
+
+/* ── Print ── */
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff !important; color: #111 !important; font-size: 11px; }
+  * { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+  #hero { min-height: 0 !important; height: auto !important; padding: 16px 24px !important; background: #fff !important; }
+  .bg-grid, .noise::after { display: none !important; }
+  section, #hero { break-inside: avoid; }
+  .chip { border: 1px solid #ddd !important; color: #333 !important; background: #f8f8f8 !important; }
+  h1, h2, h3 { color: #111 !important; }
+  @page { margin: .8cm; size: A4 portrait; }
+}
