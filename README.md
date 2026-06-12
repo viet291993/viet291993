@@ -5,7 +5,6 @@
 Tôi có hơn 5 năm kinh nghiệm phát triển phần mềm, từng tham gia nhiều dự án outsource cho thị trường Nhật Bản với đa dạng công nghệ. Hiện tại, tôi đang tập trung chuyên sâu vào **Backend** và kiến trúc hệ thống (**Microservices, Cloud Design Patterns**).
 
 ### 🚀 Về bản thân
-- 🔭 Đang phát triển: **An Lạc PMS** (Hệ thống Quản lý Vận hành Resort)
 - 🌱 Đang tìm hiểu sâu về: **Tối ưu hiệu suất, Scalability & System Design**
 - 💼 Điểm mạnh: Kỷ luật cao, bám sát Spec, xử lý đa nhiệm linh hoạt và khả năng tự học tốt.
 - 📫 Liên hệ với tôi qua: **viet291993@gmail.com**
