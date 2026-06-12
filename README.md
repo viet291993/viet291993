@@ -1,24 +1,43 @@
 # Hi there 👋, I'm Lê Đức Việt
 
-**💻 Web Developer | ⚙️ Backend & System Design Focus**
+💻 **Web Developer | ⚙️ Backend & System Design Focus**
 
-Tôi có hơn 5 năm kinh nghiệm phát triển phần mềm, từng tham gia nhiều dự án outsource cho thị trường Nhật Bản với đa dạng công nghệ. Hiện tại, tôi đang tập trung chuyên sâu vào **Backend** và kiến trúc hệ thống (**Microservices, Cloud Design Patterns**).
+I am a Full Stack Developer from Việt Nam 🇻🇳
 
-### 🚀 Về bản thân
-- 🌱 Đang tìm hiểu sâu về: **Tối ưu hiệu suất, Scalability & System Design**
-- 💼 Điểm mạnh: Kỷ luật cao, bám sát Spec, xử lý đa nhiệm linh hoạt và khả năng tự học tốt.
-- 📫 Liên hệ với tôi qua: **viet291993@gmail.com**
+I have over 5 years of experience in software development, having participated in many outsource projects for the Japanese market with diverse technologies. Currently, I am focusing on **Backend** development and system architecture (**Microservices, Cloud Design Patterns**).
 
-### 🛠 Tech Stack
-**Ngôn ngữ & Framework:** ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![NestJS](https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+---
 
-**Database & Tools:** ![PostgreSQL](https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white)
-![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+## 🚀 About Me :
 
+- 🌱 Deep diving into: **Performance Optimization, Scalability & System Design**
+- 💪 Strengths: High technical discipline, spec-oriented, multitasking flexibility, and strong self-learning ability.
+- 📫 How to reach me: ![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white) ![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)
+
+---
+
+## 💻 Languages & Frameworks :
+
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original-wordmark.svg" alt="java" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original-wordmark.svg" alt="spring" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nestjs/nestjs-original-wordmark.svg" alt="nestjs" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original-wordmark.svg" alt="nextjs" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original-wordmark.svg" alt="python" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" />
+
+## 🛠️ Databases & Tools :
+
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/prisma/prisma-original-wordmark.svg" alt="prisma" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postman/postman-original-wordmark.svg" alt="postman" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original-wordmark.svg" alt="vscode" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" /> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original-wordmark.svg" alt="git" height="32" style="background:none; border:none; box-shadow:none; display:inline-block;" />
+
+---
+
+## 🔥 My Stats :
+
+<div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=viet291993&theme=dark&hide_border=true" width="60%" />
+</div>
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=viet291993&layout=compact&theme=dark&hide_border=true" width="40%" />
+</div>
+
+---
+
+<div align="center">
+  <img src="https://komarev.com/ghpvc/?username=viet291993&color=blueviolet&style=for-the-badge" />
+</div>
