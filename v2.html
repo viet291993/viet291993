@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lê Đức Việt – Backend Developer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        colors: {
+          brand: {
+            50:  '#eef2ff',
+            100: '#e0e7ff',
+            200: '#c7d2fe',
+            400: '#818cf8',
+            500: '#6366f1',
+            600: '#4f46e5',
+            700: '#4338ca',
+          }
+        },
+        animation: {
+          'fade-up': 'fadeUp 0.6s ease both',
+          'count-up': 'countUp 0.4s ease both',
+        },
+        keyframes: {
+          fadeUp: {
+            '0%':   { opacity: '0', transform: 'translateY(20px)' },
+            '100%': { opacity: '1', transform: 'translateY(0)' },
+          },
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Timeline */
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 11px; top: 28px; bottom: -8px;
+    width: 2px;
+    background: linear-gradient(180deg, #6366f1 0%, #e0e7ff 100%);
+  }
+  .dark .timeline-item:not(:last-child)::after {
+    background: linear-gradient(180deg, #6366f1 0%, #1e1b4b 100%);
+  }
+
+  /* Skill bar */
+  .skill-fill {
+    width: 0;
+    transition: width 1s cubic-bezier(.25,.8,.25,1);
+  }
+
+  /* Print */
+  @media print {
+    .no-print { display: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    body { font-size: 12px; }
+    * { animation: none !important; transition: none !important; }
+    @page { margin: 1cm; size: A4 portrait; }
+  }
+</style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300">
+
+<!-- ─── FLOATING CONTROLS ─────────────────────────────────────────────── -->
+<div class="no-print fixed top-4 right-4 z-50 flex gap-2">
+  <button id="themeBtn"
+    class="flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 shadow-sm hover:border-brand-500 hover:text-brand-600 transition-all"
+    onclick="toggleTheme()">
+    <span id="themeIcon">🌙</span>
+    <span id="themeLabel">Dark</span>
+  </button>
+  <button
+    class="flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 shadow-sm hover:border-brand-500 hover:text-brand-600 transition-all"
+    onclick="window.print()">
+    🖨️ <span>In CV</span>
+  </button>
+  <div class="flex gap-0.5 p-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm text-xs font-medium font-mono">
+    <a href="v1.html" class="px-2.5 py-1 rounded-md text-gray-400 dark:text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">V1</a>
+    <span class="px-2.5 py-1 rounded-md bg-brand-500 text-white font-bold">V2</span>
+    <a href="index.html" class="px-2.5 py-1 rounded-md text-gray-400 dark:text-gray-500 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">V3</a>
+  </div>
+</div>
+
+<!-- ─── MAIN WRAPPER ───────────────────────────────────────────────────── -->
+<main class="max-w-5xl mx-auto px-4 py-14">
+
+  <!-- ╔══ HERO HEADER ══════════════════════════════════════════════════╗ -->
+  <header class="relative rounded-2xl overflow-hidden bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 shadow-xl mb-6 animate-fade-up">
+    <!-- Gradient bar top -->
+    <div class="h-1 w-full bg-gradient-to-r from-brand-500 via-purple-500 to-emerald-400"></div>
+
+    <div class="px-8 py-8 md:py-10 grid md:grid-cols-[1fr_auto] gap-6 items-start">
+      <!-- Left: identity -->
+      <div>
+        <!-- Status badges -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-700/20 text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-700">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span>Open to Work
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800">
+            Backend Focus
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+            System Design
+          </span>
+        </div>
+
+        <!-- Name -->
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-gray-900 dark:text-white mb-1">
+          Lê Đức <span class="text-brand-600 dark:text-brand-400">Việt</span>
+        </h1>
+        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 tracking-widest uppercase mb-6">
+          Web Developer &nbsp;·&nbsp; Backend &amp; System Design
+        </p>
+
+        <!-- Contact -->
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+            <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 text-base">📍</span>
+            Hà Nội, Việt Nam
+          </div>
+          <div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+            <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 text-base">✉️</span>
+            <a href="#" onclick="this.href='mailto:' + 'viet291993' + '@' + 'gmail.com';"
+               class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+              viet291993@gmail.com
+            </a>
+          </div>
+          <div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+            <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 text-base">📞</span>
+            <a href="tel:0363389498" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">0363 389 498</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: stats -->
+      <div class="grid grid-cols-2 gap-3 min-w-[200px]">
+        <div class="col-span-2 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-purple-600 text-white p-5 text-center shadow-lg shadow-brand-500/20">
+          <span id="expCounter" class="text-5xl font-extrabold leading-none">0</span>
+          <span class="text-xs uppercase tracking-widest opacity-80 mt-1">Năm<br>kinh nghiệm</span>
+        </div>
+        <div class="flex flex-col items-center justify-center rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-4 text-center shadow-sm">
+          <span class="text-2xl font-extrabold text-gray-900 dark:text-white">3+</span>
+          <span class="text-[10px] uppercase tracking-wider text-gray-400 mt-0.5">Dự Án</span>
+        </div>
+        <div class="flex flex-col items-center justify-center rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-4 text-center shadow-sm">
+          <span class="text-2xl font-extrabold text-gray-900 dark:text-white">🇯🇵</span>
+          <span class="text-[10px] uppercase tracking-wider text-gray-400 mt-0.5">JP Market</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ╔══ BODY GRID ════════════════════════════════════════════════════╗ -->
+  <div class="grid md:grid-cols-[1.55fr_1fr] gap-6">
+
+    <!-- ─── LEFT COLUMN ──────────────────────────────────────────────── -->
+    <div class="flex flex-col gap-6">
+
+      <!-- § Tóm tắt -->
+      <section class="reveal card">
+        <h2 class="section-title">Tóm Tắt Chuyên Môn</h2>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Lập trình viên Web với <strong class="text-brand-600 dark:text-brand-400 font-semibold">5 năm kinh nghiệm outsource</strong>
+          cho thị trường <strong class="text-brand-600 dark:text-brand-400 font-semibold">Nhật Bản</strong>.
+          Từng tham gia xử lý nhiều loại task trên các nền tảng và ngôn ngữ khác nhau —
+          từ hệ thống <strong class="font-semibold text-gray-800 dark:text-gray-200">Legacy</strong>,
+          nền tảng <strong class="font-semibold text-gray-800 dark:text-gray-200">BI</strong>
+          đến <strong class="font-semibold text-gray-800 dark:text-gray-200">Low-code</strong>.
+          Điểm mạnh là khả năng <strong class="font-semibold text-gray-800 dark:text-gray-200">đọc hiểu tài liệu (Spec)</strong>,
+          bắt nhịp nhanh với code base có sẵn và tinh thần trách nhiệm cao.
+        </p>
+      </section>
+
+      <!-- § Mục tiêu -->
+      <section class="reveal card">
+        <h2 class="section-title">Mục Tiêu Nghề Nghiệp</h2>
+        <div class="space-y-4">
+          <div class="flex gap-4 p-4 rounded-xl bg-brand-50 dark:bg-brand-900/20 border border-brand-100 dark:border-brand-800">
+            <div class="mt-1 w-2 h-2 rounded-full bg-brand-500 flex-shrink-0"></div>
+            <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+              <span class="font-semibold text-gray-900 dark:text-white">Ngắn hạn:</span>
+              Chuyển dịch từ làm đa nhiệm sang chuyên sâu <strong class="text-brand-600 dark:text-brand-400">Backend Developer</strong>.
+              Tập trung nghiên cứu và áp dụng các mô hình <strong class="text-brand-600 dark:text-brand-400">Microservices</strong>
+              và <strong class="text-brand-600 dark:text-brand-400">Cloud Design Patterns</strong>.
+            </p>
+          </div>
+          <div class="flex gap-4 p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800">
+            <div class="mt-1 w-2 h-2 rounded-full bg-purple-500 flex-shrink-0"></div>
+            <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+              <span class="font-semibold text-gray-900 dark:text-white">Dài hạn:</span>
+              Trở thành Kỹ sư Backend cứng cáp, có khả năng thiết kế, xây dựng và vận hành các hệ thống
+              <strong class="text-purple-600 dark:text-purple-400">ổn định và tối ưu hiệu suất</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- § Kinh nghiệm -->
+      <section class="reveal card">
+        <h2 class="section-title">Kinh Nghiệm Làm Việc</h2>
+        <div class="space-y-1">
+
+          <!-- Item 1 -->
+          <div class="timeline-item relative pl-8">
+            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center shadow-md shadow-brand-500/30">
+              <div class="w-2 h-2 rounded-full bg-white"></div>
+            </div>
+            <div class="pb-8">
+              <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white">Hệ thống phân tích dữ liệu GeminiOT</h3>
+                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-700 whitespace-nowrap">2023 – 2024</span>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-500 italic mb-2">Onsite tại DTS Việt Nam · Apache Superset</p>
+              <span class="inline-flex items-center text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 mb-3">Developer</span>
+              <ul class="space-y-1.5">
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span>Nghiên cứu và tùy biến mã nguồn Superset theo yêu cầu khách hàng Nhật</li>
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span><tag-b>React</tag-b> Code các Custom Nodes để mở rộng khả năng kết nối dữ liệu</li>
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span>Thiết lập luồng tích hợp dữ liệu với công cụ Flow-based kéo thả</li>
+              </ul>
+              <div class="flex flex-wrap gap-1.5 mt-3">
+                <span class="chip chip-blue">React</span>
+                <span class="chip chip-blue">Apache Superset</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="timeline-item relative pl-8">
+            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center shadow-md shadow-purple-500/30">
+              <div class="w-2 h-2 rounded-full bg-white"></div>
+            </div>
+            <div class="pb-8">
+              <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white">BI GalleriaSolo &amp; DataStudio@WEB</h3>
+                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-700 whitespace-nowrap">2019 – 2024</span>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-500 italic mb-2">Onsite tại DTS Việt Nam · Dashboard BI – DTS Japan</p>
+              <span class="inline-flex items-center text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 mb-3">Developer · Maintenance</span>
+              <ul class="space-y-1.5">
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span>Bảo trì hệ thống Legacy viết bằng Java Servlet và JavaScript cơ bản</li>
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span>Fix bug, xử lý UI lag, cải thiện tốc độ load biểu đồ</li>
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span>Bổ sung tính năng (CR) và đảm bảo hệ thống vận hành ổn định</li>
+              </ul>
+              <div class="flex flex-wrap gap-1.5 mt-3">
+                <span class="chip chip-orange">Legacy</span>
+                <span class="chip chip-blue">Java Servlet</span>
+                <span class="chip chip-blue">JavaScript</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="timeline-item relative pl-8">
+            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center shadow-md shadow-emerald-500/30">
+              <div class="w-2 h-2 rounded-full bg-white"></div>
+            </div>
+            <div class="pb-2">
+              <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white">Các dự án Outsource đa nền tảng</h3>
+                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-700 whitespace-nowrap">2019 – 2024</span>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-500 italic mb-2">Onsite tại DTS Việt Nam · Multi-stack – Thị trường Nhật Bản</p>
+              <span class="inline-flex items-center text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 mb-3">Developer · Multi-stack</span>
+              <ul class="space-y-1.5">
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span>OutSystems: Xây dựng ứng dụng Low-code bằng nền tảng kéo thả</li>
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span>Java Selenium: Viết và vận hành kịch bản Automation Test</li>
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span>C++: Đọc hiểu Spec từ đối tác Nhật và code mới các module hệ thống</li>
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span>Python: Viết script tự động hóa hỗ trợ công việc nội bộ</li>
+                <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-brand-500 flex-shrink-0">→</span>Hỗ trợ UI/UX với Angular và Flutter khi dự án thiếu nhân lực</li>
+              </ul>
+              <div class="flex flex-wrap gap-1.5 mt-3">
+                <span class="chip chip-purple">OutSystems</span>
+                <span class="chip chip-green">Java Selenium</span>
+                <span class="chip chip-blue">C++</span>
+                <span class="chip chip-orange">Python</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- § Side Project -->
+      <section class="reveal">
+        <div class="relative rounded-2xl overflow-hidden border-2 border-purple-200 dark:border-purple-800 bg-gradient-to-br from-white via-purple-50/40 to-brand-50/30 dark:from-gray-900 dark:via-purple-950/30 dark:to-brand-950/20 shadow-lg shadow-purple-500/10 p-6">
+          <!-- Corner accent -->
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-purple-500/10 to-transparent pointer-events-none"></div>
+
+          <div class="flex items-center gap-3 mb-1">
+            <span class="text-xs font-bold uppercase tracking-widest text-purple-500 dark:text-purple-400">Side Project</span>
+          </div>
+          <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+            <h2 class="text-lg font-extrabold text-gray-900 dark:text-white">An Lạc PMS</h2>
+            <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 border border-purple-300 dark:border-purple-700">2024 – nay</span>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 italic mb-1">Hệ thống Quản lý Vận hành Resort · An Lạc Ecofarm, Kim Bôi – Hòa Bình</p>
+          <span class="inline-flex items-center text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 mb-4">Solo Developer · BA · System Design</span>
+
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-purple-500 flex-shrink-0">→</span>Phân tích và thiết kế toàn bộ nghiệp vụ resort: Booking, Check-in/out, Folio billing, Housekeeping, F&amp;B, Reporting</li>
+            <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-purple-500 flex-shrink-0">→</span><strong class="text-gray-800 dark:text-gray-200">NestJS 10:</strong> Kiến trúc module-based, REST API · JWT + Refresh Token · phân quyền nhiều vai trò</li>
+            <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-purple-500 flex-shrink-0">→</span><strong class="text-gray-800 dark:text-gray-200">PostgreSQL:</strong> Prisma ORM · Supabase (production) · SQLite (dev) · state machine cho phòng &amp; booking</li>
+            <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-purple-500 flex-shrink-0">→</span><strong class="text-gray-800 dark:text-gray-200">Next.js:</strong> React 18 + TypeScript + TailwindCSS · React Query + Context · SSE real-time</li>
+            <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-purple-500 flex-shrink-0">→</span>Xuất báo giá / hóa đơn / báo cáo: ExcelJS · Puppeteer + pdf-lib</li>
+            <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400"><span class="text-purple-500 flex-shrink-0">→</span>Deploy: <strong class="text-gray-800 dark:text-gray-200">Render</strong> (backend) · <strong class="text-gray-800 dark:text-gray-200">Vercel</strong> (frontend)</li>
+            <li class="flex gap-2 text-xs text-gray-600 dark:text-gray-400">
+              <span class="text-purple-500 flex-shrink-0">→</span>
+              <span><strong class="text-purple-600 dark:text-purple-400">Roadmap:</strong> Redis Cache · Docker + GitHub Actions CI/CD · Unit Test · Sentry monitoring</span>
+            </li>
+          </ul>
+
+          <div class="flex flex-wrap gap-2 pt-3 border-t border-purple-100 dark:border-purple-900">
+            <span class="chip chip-purple">NestJS</span>
+            <span class="chip chip-green">PostgreSQL</span>
+            <span class="chip chip-green">Prisma</span>
+            <span class="chip chip-blue">Next.js</span>
+            <span class="chip chip-blue">React Query</span>
+            <span class="chip chip-blue">JWT Auth</span>
+            <span class="chip chip-blue">SSE</span>
+            <span class="chip chip-orange">ExcelJS</span>
+            <span class="chip chip-orange">Puppeteer</span>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /col-left -->
+
+    <!-- ─── RIGHT COLUMN ─────────────────────────────────────────────── -->
+    <div class="flex flex-col gap-6">
+
+      <!-- § Terminal -->
+      <section class="reveal rounded-2xl overflow-hidden shadow-lg shadow-gray-900/20">
+        <div class="bg-gray-800 dark:bg-gray-950 px-4 py-3 flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-red-500"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+          <span class="w-3 h-3 rounded-full bg-green-500"></span>
+          <span class="flex-1 text-center text-[11px] font-mono text-gray-500">viet@dev ~ </span>
+        </div>
+        <div class="bg-gray-900 dark:bg-gray-950 p-4 font-mono text-[11.5px] leading-loose min-h-[180px]" id="terminalOutput"></div>
+      </section>
+
+      <!-- § Kỹ năng -->
+      <section class="reveal card">
+        <h2 class="section-title">Kỹ Năng</h2>
+
+        <div class="space-y-5">
+          <div>
+            <p class="skill-group-label">Ngôn ngữ &amp; Framework</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip chip-blue chip-primary">Java</span>
+              <span class="chip chip-blue chip-primary">Spring Boot</span>
+              <span class="chip chip-blue chip-primary">Node.js</span>
+              <span class="chip chip-blue chip-primary">NestJS</span>
+              <span class="chip chip-blue chip-primary">TypeScript</span>
+              <span class="chip chip-blue chip-primary">React</span>
+            </div>
+          </div>
+          <div>
+            <p class="skill-group-label">Cơ sở dữ liệu</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip chip-green">SQL Server</span>
+              <span class="chip chip-green">MySQL</span>
+              <span class="chip chip-green">PostgreSQL</span>
+              <span class="chip chip-green">MariaDB</span>
+            </div>
+          </div>
+          <div>
+            <p class="skill-group-label">Công cụ &amp; Nền tảng</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip chip-orange">Apache Superset</span>
+              <span class="chip chip-orange">OutSystems</span>
+              <span class="chip chip-orange">Prisma ORM</span>
+              <span class="chip chip-orange">Git</span>
+              <span class="chip chip-orange">Java Selenium</span>
+              <span class="chip chip-orange">Puppeteer</span>
+            </div>
+          </div>
+          <div>
+            <p class="skill-group-label">Sử dụng thêm</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">Python</span>
+              <span class="chip">C++</span>
+              <span class="chip">Angular</span>
+              <span class="chip">Flutter</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- § Học vấn -->
+      <section class="reveal card">
+        <h2 class="section-title">Học Vấn</h2>
+        <div class="relative rounded-xl bg-gradient-to-br from-purple-50 to-brand-50 dark:from-purple-950/40 dark:to-brand-950/30 border border-purple-100 dark:border-purple-900 p-4 overflow-hidden">
+          <div class="absolute -bottom-4 -right-2 text-7xl font-extrabold text-purple-500/8 pointer-events-none leading-none">B.S.</div>
+          <div class="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 border border-orange-200 dark:border-orange-800 mb-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>Tốt nghiệp 2019
+          </div>
+          <p class="font-bold text-gray-900 dark:text-white text-sm mb-0.5">FPT Polytechnic College</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Chuyên ngành: Ứng dụng Phần mềm</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip chip-green">Xếp loại: Giỏi</span>
+            <span class="chip chip-blue">2017 – 2019</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- § Điểm mạnh -->
+      <section class="reveal card">
+        <h2 class="section-title">Điểm Mạnh</h2>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="chip chip-blue chip-primary">Năng lực thực thi chuẩn xác</span>
+          <span class="chip chip-purple">Tư duy chất lượng khắt khe</span>
+        </div>
+        <div class="space-y-3">
+          <div class="flex gap-3">
+            <div class="mt-1.5 w-2 h-2 rounded-full bg-brand-500 flex-shrink-0"></div>
+            <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"><strong class="text-gray-800 dark:text-gray-200">Tính kỷ luật cao:</strong> Khả năng bám sát Specs và quy trình để hạn chế tối đa sai lệch ngay từ khâu bắt đầu.</p>
+          </div>
+          <div class="flex gap-3">
+            <div class="mt-1.5 w-2 h-2 rounded-full bg-purple-500 flex-shrink-0"></div>
+            <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"><strong class="text-gray-800 dark:text-gray-200">Độ tin cậy:</strong> Am hiểu văn hóa phối hợp dự án và các tiêu chuẩn khắt khe nhất của thị trường Nhật.</p>
+          </div>
+          <div class="flex gap-3">
+            <div class="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></div>
+            <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed"><strong class="text-gray-800 dark:text-gray-200">Sự bền bỉ:</strong> Năng lực làm việc ổn định và cam kết cao trong suốt 5 năm thực chiến.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+          <span class="chip">Onboard nhanh</span>
+          <span class="chip">Trách nhiệm cao</span>
+          <span class="chip">Đa nhiệm linh hoạt</span>
+          <span class="chip">Self-learning</span>
+          <span class="chip">Chịu áp lực cao</span>
+        </div>
+      </section>
+
+      <!-- § Mong muốn -->
+      <section class="reveal card">
+        <h2 class="section-title">Mong Muốn</h2>
+        <div class="space-y-4">
+          <div>
+            <p class="skill-group-label">Hình thức</p>
+            <div class="flex flex-wrap gap-2"><span class="chip chip-blue chip-primary">Linh hoạt (văn phòng + remote)</span></div>
+          </div>
+          <div>
+            <p class="skill-group-label">Khu vực</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip">Hà Nội</span>
+              <span class="chip">Có thể Remote</span>
+            </div>
+          </div>
+          <div>
+            <p class="skill-group-label">Vị trí</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip chip-blue chip-primary">Backend Developer</span>
+              <span class="chip">Công ty Product</span>
+            </div>
+          </div>
+          <div>
+            <p class="skill-group-label">Môi trường</p>
+            <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+              Mong muốn gia nhập đội ngũ có nền tảng kỹ thuật vững chắc để đóng góp giá trị sẵn có, đồng thời
+              <strong class="text-gray-800 dark:text-gray-200">nâng tầm tư duy System Design</strong>
+              qua việc thực chiến các bài toán quy mô lớn
+              (<strong class="text-brand-600 dark:text-brand-400">High Traffic / Large Scale</strong>).
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /col-right -->
+  </div><!-- /grid -->
+</main>
+
+<!-- ─── UTILITY CLASSES (injected via style tag for Tailwind JIT) ──────── -->
+<style>
+  .card {
+    @apply rounded-2xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 shadow-sm p-6;
+  }
+  .section-title {
+    @apply text-xs font-bold uppercase tracking-[0.12em] text-gray-400 dark:text-gray-500 mb-4 flex items-center gap-3;
+  }
+  .section-title::after {
+    content: '';
+    @apply flex-1 h-px bg-gray-100 dark:bg-gray-800;
+  }
+  .skill-group-label {
+    @apply text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-400 dark:text-gray-500 mb-2 flex items-center gap-2;
+  }
+  .skill-group-label::after {
+    content: '';
+    @apply flex-1 h-px bg-gray-100 dark:bg-gray-800;
+  }
+  .chip {
+    @apply inline-flex items-center text-[11px] font-medium px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 transition-colors hover:border-gray-300 dark:hover:border-gray-600;
+  }
+  .chip-blue   { @apply bg-blue-50  dark:bg-blue-900/20  text-blue-700  dark:text-blue-400  border-blue-200  dark:border-blue-800;  }
+  .chip-green  { @apply bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800; }
+  .chip-purple { @apply bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 border-purple-200 dark:border-purple-800; }
+  .chip-orange { @apply bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-400 border-orange-200 dark:border-orange-800; }
+  .chip-primary { @apply !bg-brand-50 dark:!bg-brand-900/20 !text-brand-700 dark:!text-brand-400 !border-brand-200 dark:!border-brand-700; }
+</style>
+
+<!-- ─── SCRIPTS ────────────────────────────────────────────────────────── -->
+<script>
+  /* ── Theme ── */
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    document.getElementById('themeIcon').textContent  = isDark ? '☀️' : '🌙';
+    document.getElementById('themeLabel').textContent = isDark ? 'Light' : 'Dark';
+    localStorage.setItem('theme-v2', isDark ? 'dark' : 'light');
+  }
+  (function initTheme() {
+    const saved = localStorage.getItem('theme-v2');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const useDark = saved ? saved === 'dark' : prefersDark;
+    if (useDark) {
+      document.documentElement.classList.add('dark');
+      document.getElementById('themeIcon').textContent  = '☀️';
+      document.getElementById('themeLabel').textContent = 'Light';
+    }
+  })();
+
+  document.addEventListener('DOMContentLoaded', () => {
+
+    /* ── Reveal on scroll ── */
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (i * 0.06) + 's';
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* ── Counter animation ── */
+    const counter = document.getElementById('expCounter');
+    const target  = 5;
+    let cur = 0;
+    const step = 1200 / target;
+    setTimeout(() => {
+      const iv = setInterval(() => {
+        cur++;
+        counter.textContent = cur;
+        if (cur >= target) clearInterval(iv);
+      }, step);
+    }, 700);
+
+    /* ── Terminal typing ── */
+    const lines = [
+      { prompt: true,  cmd: 'whoami' },
+      { prompt: false, cls: 'text-brand-400', text: 'le-duc-viet' },
+      { prompt: true,  cmd: 'cat focus.txt' },
+      { prompt: false, cls: 'text-gray-500',  text: '# backend engineer' },
+      { prompt: true,  cmd: 'ping japan-market' },
+      { prompt: false, cls: 'text-brand-400', text: 'PONG · 5yr · 0 packet loss' },
+      { prompt: true,  cmd: 'git log --oneline -3' },
+      { prompt: false, cls: 'text-emerald-400', text: 'a1b2c3 fix: ui lag superset' },
+      { prompt: false, cls: 'text-emerald-400', text: 'd4e5f6 feat: custom nodes' },
+      { prompt: false, cls: 'text-emerald-400', text: 'g7h8i9 chore: automation test' },
+    ];
+
+    const out      = document.getElementById('terminalOutput');
+    const CHAR_SPD = 36;
+    const LINE_GAP = 140;
+    const timers   = [];
+
+    function makeLine(ln) {
+      const div = document.createElement('div');
+      if (ln.prompt) {
+        const sp = document.createElement('span');
+        sp.className = 'text-emerald-400';
+        sp.textContent = '$ ';
+        div.appendChild(sp);
+        const cmd = document.createElement('span');
+        cmd.className = 'text-white';
+        div.appendChild(cmd);
+        return { el: div, span: cmd, text: ln.cmd };
+      } else {
+        const sp = document.createElement('span');
+        sp.className = ln.cls || 'text-gray-400';
+        div.appendChild(sp);
+        return { el: div, span: sp, text: ln.text };
+      }
+    }
+
+    const built = lines.map(ln => {
+      const b = makeLine(ln);
+      b.span.textContent = ' ';
+      out.appendChild(b.el);
+      return b;
+    });
+
+    let li = 0;
+    function typeLine() {
+      if (li >= built.length) return;
+      const { span, text } = built[li];
+      span.textContent = '';
+      let ci = 0;
+      function ch() {
+        if (ci < text.length) { span.textContent += text[ci++]; timers.push(setTimeout(ch, CHAR_SPD)); }
+        else { li++; timers.push(setTimeout(typeLine, LINE_GAP)); }
+      }
+      ch();
+    }
+    timers.push(setTimeout(typeLine, 800));
+
+    function flushTerminal() {
+      timers.forEach(clearTimeout);
+      timers.length = 0;
+      built.forEach(({ span, text }) => { span.textContent = text; });
+      document.getElementById('expCounter').textContent = target;
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+
+    window.addEventListener('beforeprint', flushTerminal);
+  });
+</script>
+</body>
+</html>
