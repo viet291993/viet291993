@@ -98,12 +98,67 @@ gsap.to('.footer-col', {
   scrollTrigger: { trigger: '#footer-info', start: 'top 80%', once: true }
 });
 
+/* ══ HERO VIDEO FRAME ══ */
+(function() {
+  const frame = document.getElementById('hero-video-frame');
+  if (!frame) return;
+  gsap.set(frame, { rotation: -2.5 });
+  gsap.to(frame, { opacity: 1, duration: 1.1, ease: 'power3.out', delay: 1.2 });
+  gsap.to(frame, {
+    y: -14, rotation: -1.6,
+    duration: 4.2, ease: 'sine.inOut',
+    repeat: -1, yoyo: true, delay: 2.5
+  });
+})();
+
+/* ══ PMS DASHBOARD VISUAL ══ */
+(function() {
+  const visual = document.querySelector('#pms-visual');
+  if (!visual) return;
+
+  ScrollTrigger.create({
+    trigger: visual,
+    start: 'top 80%',
+    once: true,
+    onEnter() {
+      gsap.fromTo('.pms-stat',
+        { x: 28, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.55, ease: 'power3.out', stagger: 0.14 }
+      );
+
+      const occEl = document.getElementById('pms-occ');
+      if (occEl) {
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: 84, duration: 1.6, ease: 'power2.out', delay: 0.25,
+          onUpdate() { occEl.textContent = Math.round(obj.val); }
+        });
+      }
+
+      gsap.to('#pms-bar', { width: '84%', duration: 1.5, ease: 'power2.out', delay: 0.25 });
+
+      gsap.delayedCall(0.95, () => {
+        gsap.utils.toArray('.pms-stat').forEach((card, i) => {
+          gsap.to(card, {
+            y: -7, duration: 2.2 + i * 0.5,
+            ease: 'sine.inOut', repeat: -1, yoyo: true, delay: i * 0.45
+          });
+        });
+      });
+    }
+  });
+})();
+
 /* ══ PRINT FLUSH ══ */
 window.addEventListener('beforeprint', () => {
   gsap.set([
     '#hero-name-1','#hero-name-2','#hero-pre','#hero-contact','#hero-scroll',
+    '#hero-video-frame',
     '.ah-word','.exp-card','.project-card','.footer-col','.sec-label',
+    '.pms-stat',
   ], { clearProps: 'all' });
   document.querySelectorAll('.char').forEach(c => c.style.opacity = '1');
   document.getElementById('hero-line').style.width = '100%';
+  const bar = document.getElementById('pms-bar');
+  if (bar) bar.style.width = '84%';
 });
