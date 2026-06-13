@@ -76,7 +76,11 @@ body { font-family: 'Inter', sans-serif; background: #080808; color: #E1E0CC; ov
 .exp-card { opacity: 0; }
 .project-card { opacity: 0; }
 .footer-col { opacity: 0; }
-#hero-video-frame { opacity: 0; }
+#hero-video-frame {
+  opacity: 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 15%, black 35%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 15%, black 35%);
+}
 .pms-stat { opacity: 0; }
 
 /* ── Cursor glow ── */
