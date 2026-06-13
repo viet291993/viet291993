@@ -29,38 +29,29 @@ tailwind.config = {
 
 <body>
 
-<!-- ── FLOATING CONTROLS ──────────────────────────────────────────────── -->
-<div class="no-print fixed top-4 right-4 z-50 flex gap-2 items-center">
-  <button onclick="window.print()"
-    class="flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium font-mono rounded-lg border border-[rgba(225,224,204,.12)] bg-[rgba(225,224,204,.04)] text-[rgba(225,224,204,.5)] hover:text-[#E1E0CC] hover:border-[rgba(225,224,204,.28)] transition-all backdrop-blur-sm">
-    🖨 Print CV
-  </button>
-  <div style="display:flex; gap:2px; padding:3px; border:1px solid rgba(225,224,204,.12); background:rgba(225,224,204,.04); border-radius:8px; backdrop-filter:blur(8px);">
-    <a href="v1.html" style="padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(225,224,204,.4); text-decoration:none; border-radius:5px; transition:color .15s;" onmouseover="this.style.color='#E1E0CC'" onmouseout="this.style.color='rgba(225,224,204,.4)'">V1</a>
-    <span style="padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; background:#E1E0CC; color:#080808; border-radius:5px;">V2</span>
-  </div>
-</div>
 
 <!-- ════════════════════════════════════════════════════════ -->
 <!--  HERO                                                    -->
 <!-- ════════════════════════════════════════════════════════ -->
-<section id="hero" class="relative min-h-screen flex flex-col noise overflow-hidden">
-
-  <!-- Video background -->
-  <video autoplay muted loop playsinline
-    class="absolute inset-0 w-full h-full object-cover"
-    style="z-index:0;">
-    <source src="assets/hero-bg.mp4" type="video/mp4">
-  </video>
-
-  <!-- Dark overlay -->
-  <div class="absolute inset-0" style="background:rgba(8,8,8,.62); z-index:1;"></div>
+<section id="hero" class="relative min-h-screen flex flex-col bg-grid noise overflow-hidden">
 
   <!-- Radial glows -->
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] pointer-events-none"
-    style="z-index:3; background: radial-gradient(ellipse at center, rgba(99,102,241,.09) 0%, transparent 70%);"></div>
+    style="background: radial-gradient(ellipse at center, rgba(99,102,241,.09) 0%, transparent 70%);"></div>
   <div class="absolute bottom-0 left-0 w-[600px] h-[400px] pointer-events-none"
-    style="z-index:3; background: radial-gradient(ellipse at left bottom, rgba(167,139,250,.06) 0%, transparent 70%);"></div>
+    style="background: radial-gradient(ellipse at left bottom, rgba(167,139,250,.06) 0%, transparent 70%);"></div>
+
+  <!-- Floating video frame (desktop only) -->
+  <div class="no-print hidden lg:flex items-center absolute inset-y-0 z-10 pointer-events-none"
+    style="right: 3.5rem; width: 36%; max-width: 500px;">
+    <div id="hero-video-frame" style="width: 100%;">
+      <div style="border-radius: 14px; overflow: hidden; border: 1px solid rgba(99,102,241,.22); box-shadow: 0 24px 80px rgba(0,0,0,.65), 0 0 100px rgba(99,102,241,.08);">
+        <video autoplay muted loop playsinline style="width: 100%; display: block; object-fit: cover;">
+          <source src="assets/hero-bg.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
 
   <!-- Status bar -->
   <div class="relative z-10 flex justify-between items-center px-6 md:px-14 pt-7">
@@ -154,10 +145,10 @@ tailwind.config = {
 
   <p class="sec-label">// 02 — Work Experience</p>
 
-  <div style="display:flex; flex-direction:column; gap:12px;">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
 
     <!-- Card 1 -->
-    <div class="exp-card group relative border rounded-2xl p-6 md:p-8 transition-all duration-300"
+    <div class="exp-card group relative border rounded-2xl p-6 transition-all duration-300"
       style="border-color:rgba(225,224,204,.06); background:rgba(225,224,204,.018);"
       onmouseenter="this.style.borderColor='rgba(99,102,241,.22)'; this.style.background='rgba(99,102,241,.04)';"
       onmouseleave="this.style.borderColor='rgba(225,224,204,.06)'; this.style.background='rgba(225,224,204,.018)';">
@@ -182,7 +173,7 @@ tailwind.config = {
     </div>
 
     <!-- Card 2 -->
-    <div class="exp-card relative border rounded-2xl p-6 md:p-8 transition-all duration-300"
+    <div class="exp-card relative border rounded-2xl p-6 transition-all duration-300"
       style="border-color:rgba(225,224,204,.06); background:rgba(225,224,204,.018);"
       onmouseenter="this.style.borderColor='rgba(167,139,250,.22)'; this.style.background='rgba(167,139,250,.04)';"
       onmouseleave="this.style.borderColor='rgba(225,224,204,.06)'; this.style.background='rgba(225,224,204,.018)';">
@@ -208,7 +199,7 @@ tailwind.config = {
     </div>
 
     <!-- Card 3 -->
-    <div class="exp-card relative border rounded-2xl p-6 md:p-8 transition-all duration-300"
+    <div class="exp-card relative border rounded-2xl p-6 transition-all duration-300"
       style="border-color:rgba(225,224,204,.06); background:rgba(225,224,204,.018);"
       onmouseenter="this.style.borderColor='rgba(16,185,129,.22)'; this.style.background='rgba(16,185,129,.04)';"
       onmouseleave="this.style.borderColor='rgba(225,224,204,.06)'; this.style.background='rgba(225,224,204,.018)';">
@@ -257,42 +248,100 @@ tailwind.config = {
     <div class="absolute top-0 right-0 w-72 h-72 pointer-events-none"
       style="background: radial-gradient(ellipse at top right, rgba(167,139,250,.12) 0%, transparent 70%);"></div>
 
-    <div class="relative z-10 p-6 md:p-10">
+    <div class="relative z-10 flex flex-col md:flex-row">
 
-      <div class="flex flex-wrap items-start justify-between gap-4 mb-1">
-        <span class="font-mono text-[10px] text-[rgba(167,139,250,.5)] tracking-widest uppercase">Side Project · Solo Developer</span>
-        <span class="font-mono text-[11px] px-3 py-1 rounded-full border"
-          style="border-color:rgba(167,139,250,.3); background:rgba(167,139,250,.08); color:rgba(196,181,253,.85);">2024 – present</span>
+      <!-- Left 70%: content -->
+      <div class="p-6 md:p-10" style="flex: 7; min-width: 0;">
+
+        <div class="flex flex-wrap items-start justify-between gap-4 mb-1">
+          <span class="font-mono text-[10px] text-[rgba(167,139,250,.5)] tracking-widest uppercase">Side Project · Solo Developer</span>
+          <span class="font-mono text-[11px] px-3 py-1 rounded-full border"
+            style="border-color:rgba(167,139,250,.3); background:rgba(167,139,250,.08); color:rgba(196,181,253,.85);">2024 – present</span>
+        </div>
+
+        <h2 class="font-display font-extrabold text-[#E1E0CC] mb-1" style="font-size:clamp(28px,4vw,48px);">An Lac PMS</h2>
+        <p class="text-sm text-[rgba(225,224,204,.38)] italic mb-5">Resort Management System · An Lac Ecofarm, Kim Boi – Hoa Binh</p>
+
+        <span class="inline-flex items-center text-[11px] font-medium px-3 py-1 rounded-full mb-6"
+          style="border:1px solid rgba(167,139,250,.22); background:rgba(167,139,250,.08); color:rgba(196,181,253,.85);">
+          BA · System Design · Full Stack
+        </span>
+
+        <ul class="grid md:grid-cols-2 gap-x-10 gap-y-3 mb-8 text-sm text-[rgba(225,224,204,.58)]">
+          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span>Designed full resort operations: Booking, Check-in/out, Folio billing, Housekeeping, F&amp;B, Reporting</span></li>
+          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span><strong class="text-[rgba(225,224,204,.82)]">NestJS 10:</strong> Module-based REST API · JWT + Refresh Token · multi-role auth</span></li>
+          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span><strong class="text-[rgba(225,224,204,.82)]">PostgreSQL:</strong> Prisma ORM · Supabase (prod) · state machine for rooms &amp; bookings</span></li>
+          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span><strong class="text-[rgba(225,224,204,.82)]">Next.js:</strong> React 18 + TypeScript + TailwindCSS · React Query · SSE real-time</span></li>
+          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span>Export quotes / invoices / reports via ExcelJS · Puppeteer + pdf-lib</span></li>
+          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span>Deploy: <strong class="text-[rgba(225,224,204,.82)]">Render</strong> (API) · <strong class="text-[rgba(225,224,204,.82)]">Vercel</strong> (UI)</span></li>
+          <li class="flex gap-3 md:col-span-2"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span style="color:rgba(196,181,253,.7);">Roadmap: Redis cache · Docker + GitHub Actions CI/CD · Unit Test · Sentry</span></li>
+        </ul>
+
+        <div style="display:flex; flex-wrap:wrap; gap:8px; padding-top:24px; border-top:1px solid rgba(225,224,204,.05);">
+          <span class="chip chip-p">NestJS</span>
+          <span class="chip chip-p">PostgreSQL</span>
+          <span class="chip chip-p">Prisma</span>
+          <span class="chip chip-p">Next.js</span>
+          <span class="chip chip-p">React Query</span>
+          <span class="chip chip-p">JWT Auth</span>
+          <span class="chip chip-p">SSE</span>
+          <span class="chip chip-p">ExcelJS</span>
+          <span class="chip chip-p">Puppeteer</span>
+        </div>
       </div>
 
-      <h2 class="font-display font-extrabold text-[#E1E0CC] mb-1" style="font-size:clamp(28px,4vw,48px);">An Lac PMS</h2>
-      <p class="text-sm text-[rgba(225,224,204,.38)] italic mb-5">Resort Management System · An Lac Ecofarm, Kim Boi – Hoa Binh</p>
+      <!-- Right 30%: GSAP animated PMS dashboard -->
+      <div id="pms-visual" class="hidden md:flex flex-col justify-center gap-3 p-8 pl-6"
+        style="flex: 3; min-width: 220px; max-width: 280px; border-left: 1px solid rgba(225,224,204,.05);">
 
-      <span class="inline-flex items-center text-[11px] font-medium px-3 py-1 rounded-full mb-6"
-        style="border:1px solid rgba(167,139,250,.22); background:rgba(167,139,250,.08); color:rgba(196,181,253,.85);">
-        BA · System Design · Full Stack
-      </span>
+        <p style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(225,224,204,.18); margin-bottom:2px;">live data</p>
 
-      <ul class="grid md:grid-cols-2 gap-x-10 gap-y-3 mb-8 text-sm text-[rgba(225,224,204,.58)]">
-        <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span>Designed full resort operations: Booking, Check-in/out, Folio billing, Housekeeping, F&amp;B, Reporting</span></li>
-        <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span><strong class="text-[rgba(225,224,204,.82)]">NestJS 10:</strong> Module-based REST API · JWT + Refresh Token · multi-role auth</span></li>
-        <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span><strong class="text-[rgba(225,224,204,.82)]">PostgreSQL:</strong> Prisma ORM · Supabase (prod) · state machine for rooms &amp; bookings</span></li>
-        <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span><strong class="text-[rgba(225,224,204,.82)]">Next.js:</strong> React 18 + TypeScript + TailwindCSS · React Query · SSE real-time</span></li>
-        <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span>Export quotes / invoices / reports via ExcelJS · Puppeteer + pdf-lib</span></li>
-        <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span>Deploy: <strong class="text-[rgba(225,224,204,.82)]">Render</strong> (API) · <strong class="text-[rgba(225,224,204,.82)]">Vercel</strong> (UI)</span></li>
-        <li class="flex gap-3 md:col-span-2"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span style="color:rgba(196,181,253,.7);">Roadmap: Redis cache · Docker + GitHub Actions CI/CD · Unit Test · Sentry</span></li>
-      </ul>
+        <!-- Occupancy -->
+        <div class="pms-stat" style="background:rgba(99,102,241,.07); border:1px solid rgba(99,102,241,.15); border-radius:10px; padding:14px 16px;">
+          <p style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:rgba(165,180,252,.45); margin-bottom:8px;">Occupancy</p>
+          <p style="font-family:'Syne',sans-serif; font-size:30px; font-weight:800; color:#a5b4fc; line-height:1; margin-bottom:10px;">
+            <span id="pms-occ">0</span><span style="font-size:14px; opacity:.5;">%</span>
+          </p>
+          <div style="background:rgba(99,102,241,.12); border-radius:3px; height:3px; overflow:hidden;">
+            <div id="pms-bar" style="height:100%; width:0%; background:linear-gradient(90deg,#6366f1,#a5b4fc); border-radius:3px;"></div>
+          </div>
+        </div>
 
-      <div style="display:flex; flex-wrap:wrap; gap:8px; padding-top:24px; border-top:1px solid rgba(225,224,204,.05);">
-        <span class="chip chip-p">NestJS</span>
-        <span class="chip chip-p">PostgreSQL</span>
-        <span class="chip chip-p">Prisma</span>
-        <span class="chip chip-p">Next.js</span>
-        <span class="chip chip-p">React Query</span>
-        <span class="chip chip-p">JWT Auth</span>
-        <span class="chip chip-p">SSE</span>
-        <span class="chip chip-p">ExcelJS</span>
-        <span class="chip chip-p">Puppeteer</span>
+        <!-- Room Status -->
+        <div class="pms-stat" style="background:rgba(16,185,129,.05); border:1px solid rgba(16,185,129,.13); border-radius:10px; padding:14px 16px;">
+          <p style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:rgba(52,211,153,.45); margin-bottom:10px;">Room Status</p>
+          <div style="display:flex; flex-direction:column; gap:7px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:7px;">
+                <div style="width:6px; height:6px; border-radius:50%; background:#34d399; box-shadow:0 0 6px rgba(52,211,153,.7);"></div>
+                <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(225,224,204,.4);">Available</span>
+              </div>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(52,211,153,.85);">4</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:7px;">
+                <div style="width:6px; height:6px; border-radius:50%; background:#6366f1; box-shadow:0 0 6px rgba(99,102,241,.7);"></div>
+                <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(225,224,204,.4);">Occupied</span>
+              </div>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(165,180,252,.85);">18</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:7px;">
+                <div style="width:6px; height:6px; border-radius:50%; background:#f59e0b;"></div>
+                <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(225,224,204,.4);">Cleaning</span>
+              </div>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(251,191,36,.8);">2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Revenue -->
+        <div class="pms-stat" style="background:rgba(167,139,250,.05); border:1px solid rgba(167,139,250,.13); border-radius:10px; padding:14px 16px;">
+          <p style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:rgba(196,181,253,.45); margin-bottom:6px;">Revenue / mo</p>
+          <p style="font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:#c4b5fd; line-height:1.2; margin-bottom:5px;">₫18.4M</p>
+          <p style="font-family:'JetBrains Mono',monospace; font-size:9px; color:rgba(52,211,153,.6);">↑ +8.2% vs prev month</p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -433,7 +482,10 @@ tailwind.config = {
   <!-- Bottom nav -->
   <div style="margin-top:56px; padding-top:28px; border-top:1px solid rgba(225,224,204,.05); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
     <p class="font-display font-bold" style="font-size:20px; color:rgba(225,224,204,.18);">Le Duc Viet</p>
-    <a href="v1.html" class="font-mono text-[11px] text-[rgba(225,224,204,.28)] hover:text-[rgba(225,224,204,.7)] transition-colors">V1 →</a>
+    <div style="display:flex; gap:2px; padding:3px; border:1px solid rgba(225,224,204,.1); background:rgba(225,224,204,.03); border-radius:8px;">
+      <a href="v1.html" style="padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(225,224,204,.4); text-decoration:none; border-radius:5px; transition:color .15s;" onmouseover="this.style.color='#E1E0CC'" onmouseout="this.style.color='rgba(225,224,204,.4)'">V1</a>
+      <span style="padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; background:#E1E0CC; color:#080808; border-radius:5px;">V2</span>
+    </div>
   </div>
 
 </section>
