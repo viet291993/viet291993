@@ -34,7 +34,7 @@ body { font-family: 'Inter', sans-serif; background: #080808; color: #E1E0CC; ov
 /* ── Section label ── */
 .sec-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 12px;
   color: rgba(225,224,204,.3);
   letter-spacing: .3em;
   text-transform: uppercase;
@@ -46,7 +46,7 @@ body { font-family: 'Inter', sans-serif; background: #080808; color: #E1E0CC; ov
 .chip {
   display: inline-flex; align-items: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   padding: 4px 12px;
   border-radius: 6px;
   border: 1px solid rgba(225,224,204,.08);
