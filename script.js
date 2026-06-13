@@ -112,6 +112,9 @@ gsap.to('.footer-col', {
 (function() {
   const frame = document.getElementById('hero-video-frame');
   if (!frame) return;
+
+  gsap.set(frame, { top: '5%', height: '100%' });
+
   gsap.to(frame, { opacity: 1, duration: 2.2, ease: 'power2.out', delay: 0.7 });
   gsap.to(frame, {
     y: '-8%', ease: 'none',
