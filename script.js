@@ -52,7 +52,7 @@ gsap.utils.toArray('.sec-label').forEach(el => {
   const total = chars.length;
 
   ScrollTrigger.create({
-    trigger: p, start: 'top 75%', end: 'bottom 22%',
+    trigger: p, start: 'top 80%', end: 'bottom 68%',
     onUpdate(self) {
       const pr = self.progress;
       chars.forEach((ch, i) => {
