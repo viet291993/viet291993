@@ -102,13 +102,7 @@ gsap.to('.footer-col', {
 (function() {
   const frame = document.getElementById('hero-video-frame');
   if (!frame) return;
-  gsap.set(frame, { rotation: -2.5 });
-  gsap.to(frame, { opacity: 1, duration: 1.1, ease: 'power3.out', delay: 1.2 });
-  gsap.to(frame, {
-    y: -14, rotation: -1.6,
-    duration: 4.2, ease: 'sine.inOut',
-    repeat: -1, yoyo: true, delay: 2.5
-  });
+  gsap.to(frame, { opacity: 1, duration: 2.2, ease: 'power2.out', delay: 0.7 });
 })();
 
 /* ══ PMS DASHBOARD VISUAL ══ */
