@@ -18,15 +18,16 @@ gsap.utils.toArray('.sec-label').forEach(el => {
   });
 });
 
-/* ══ ABOUT HEADLINE — word pull-up ══ */
+/* ══ ABOUT HEADLINE — word pull-up multi-style ══ */
 (function() {
   const h = document.querySelector('.about-headline');
   if (!h) return;
-  const words = h.textContent.trim().split(/\s+/);
-  h.innerHTML = words.map(w =>
-    `<span style="display:inline-block; overflow:hidden; vertical-align:bottom; line-height:1.06; margin-right:.3em;"><span class="ah-word" style="display:inline-block; will-change:transform,opacity; transform:translateY(100%); opacity:0;">${w}</span></span>`
-  ).join('');
-
+  h.querySelectorAll('.ah-seg').forEach(seg => {
+    const words = seg.textContent.split(/\s+/).filter(w => w.length > 0);
+    seg.innerHTML = words.map(w =>
+      `<span style="display:inline-block;overflow:hidden;vertical-align:bottom;line-height:1.06;margin-right:.3em;"><span class="ah-word" style="display:inline-block;will-change:transform,opacity;transform:translateY(100%);opacity:0;">${w}</span></span>`
+    ).join('');
+  });
   gsap.to('.ah-word', {
     y: '0%', opacity: 1,
     duration: 0.75, ease: 'power3.out', stagger: 0.055,
