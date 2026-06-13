@@ -29,8 +29,8 @@ tailwind.config = {
 
 <body>
 
-
-<!-- ════════════════════════════════════════════════════════ -->
+<!-- Cursor glow -->
+<div id="cursor-glow" class="no-print"></div>
 <!--  HERO                                                    -->
 <!-- ════════════════════════════════════════════════════════ -->
 <section id="hero" class="relative min-h-screen flex flex-col bg-grid noise overflow-hidden">
@@ -42,8 +42,8 @@ tailwind.config = {
     style="background: radial-gradient(ellipse at left bottom, rgba(167,139,250,.06) 0%, transparent 70%);"></div>
 
   <!-- Split video — right side, fades left (desktop only) -->
-  <div class="no-print hidden lg:block absolute inset-y-0 right-0 pointer-events-none" style="width: 52%; z-index: 1;">
-    <div id="hero-video-frame" class="absolute inset-0">
+  <div id="hero-video-wrap" class="no-print hidden lg:block absolute inset-y-0 right-0 pointer-events-none" style="width: 52%; z-index: 1; overflow: hidden;">
+    <div id="hero-video-frame" style="position:absolute; top:-5%; left:0; right:0; height:110%;">
       <video autoplay muted loop playsinline class="w-full h-full" style="object-fit: cover; object-position: center;">
         <source src="assets/hero-bg.mp4" type="video/mp4">
       </video>
@@ -360,22 +360,22 @@ tailwind.config = {
     <div>
       <p class="font-mono text-[10px] text-[rgba(225,224,204,.28)] tracking-[.15em] uppercase mb-4">Languages &amp; Frameworks</p>
       <div class="skill-group" style="display:flex; flex-wrap:wrap; gap:8px;">
-        <span class="chip chip-ip">Java</span>
-        <span class="chip chip-ip">Spring Boot</span>
-        <span class="chip chip-ip">Node.js</span>
-        <span class="chip chip-ip">NestJS</span>
-        <span class="chip chip-ip">TypeScript</span>
-        <span class="chip chip-ip">React</span>
+        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/java/java-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">Java</span>
+        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/spring/spring-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">Spring Boot</span>
+        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nodejs/nodejs-plain.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">Node.js</span>
+        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nestjs/nestjs-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">NestJS</span>
+        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/typescript/typescript-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">TypeScript</span>
+        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/react/react-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">React</span>
       </div>
     </div>
 
     <div>
       <p class="font-mono text-[10px] text-[rgba(225,224,204,.28)] tracking-[.15em] uppercase mb-4">Databases</p>
       <div class="skill-group" style="display:flex; flex-wrap:wrap; gap:8px;">
-        <span class="chip chip-g">SQL Server</span>
-        <span class="chip chip-g">MySQL</span>
-        <span class="chip chip-g">PostgreSQL</span>
-        <span class="chip chip-g">MariaDB</span>
+        <span class="chip chip-g"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">SQL Server</span>
+        <span class="chip chip-g"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mysql/mysql-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">MySQL</span>
+        <span class="chip chip-g"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/postgresql/postgresql-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">PostgreSQL</span>
+        <span class="chip chip-g"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mariadb/mariadb-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">MariaDB</span>
       </div>
     </div>
 

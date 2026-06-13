@@ -71,6 +71,21 @@ body { font-family: 'Inter', sans-serif; background: #080808; color: #E1E0CC; ov
 #hero-video-frame { opacity: 0; }
 .pms-stat { opacity: 0; }
 
+/* ── Cursor glow ── */
+#cursor-glow {
+  position: fixed;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,102,241,.11) 0%, rgba(167,139,250,.05) 35%, transparent 65%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  will-change: left, top;
+  top: -240px;
+  left: -240px;
+}
+
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #080808; }
