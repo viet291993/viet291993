@@ -98,12 +98,38 @@ gsap.to('.footer-col', {
   scrollTrigger: { trigger: '#footer-info', start: 'top 80%', once: true }
 });
 
-/* ══ HERO VIDEO FRAME ══ */
+/* ══ CURSOR GLOW ══ */
+(function() {
+  const glow = document.getElementById('cursor-glow');
+  if (!glow || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const xTo = gsap.quickTo(glow, 'left', { duration: 0.65, ease: 'power2.out' });
+  const yTo = gsap.quickTo(glow, 'top',  { duration: 0.65, ease: 'power2.out' });
+  window.addEventListener('mousemove', e => { xTo(e.clientX); yTo(e.clientY); });
+})();
+
+/* ══ HERO VIDEO FRAME + PARALLAX ══ */
 (function() {
   const frame = document.getElementById('hero-video-frame');
   if (!frame) return;
   gsap.to(frame, { opacity: 1, duration: 2.2, ease: 'power2.out', delay: 0.7 });
+  gsap.to(frame, {
+    y: '-8%', ease: 'none',
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1.2 }
+  });
 })();
+
+/* ══ MAGNETIC CHIPS ══ */
+gsap.utils.toArray('.chip').forEach(chip => {
+  chip.addEventListener('mousemove', function(e) {
+    const r = chip.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width  / 2) * 0.28;
+    const dy = (e.clientY - r.top  - r.height / 2) * 0.28;
+    gsap.to(chip, { x: dx, y: dy, duration: 0.2, ease: 'power2.out' });
+  });
+  chip.addEventListener('mouseleave', function() {
+    gsap.to(chip, { x: 0, y: 0, duration: 0.55, ease: 'elastic.out(1, 0.4)' });
+  });
+});
 
 /* ══ PMS DASHBOARD VISUAL ══ */
 (function() {
