@@ -29,6 +29,38 @@ tailwind.config = {
 
 <body>
 
+<!-- Noise overlay toàn trang -->
+<div class="noise-overlay opacity-[0.7] mix-blend-overlay pointer-events-none fixed inset-0 z-[9999]"></div>
+
+<!-- Navbar -->
+<nav class="fixed top-0 left-1/2 -translate-x-1/2 z-50 no-print">
+  <!-- Desktop pill -->
+  <div class="hidden sm:block bg-black rounded-b-2xl md:rounded-b-3xl px-4 py-2 md:px-8">
+    <ul class="flex items-center gap-3 sm:gap-6 md:gap-12 lg:gap-14">
+      <li><a href="#about"       class="nav-link text-[10px] sm:text-xs md:text-sm whitespace-nowrap">About</a></li>
+      <li><a href="#experience"  class="nav-link text-[10px] sm:text-xs md:text-sm whitespace-nowrap">Experience</a></li>
+      <li><a href="#skills"      class="nav-link text-[10px] sm:text-xs md:text-sm whitespace-nowrap">Tech Stack</a></li>
+      <li><a href="#project"     class="nav-link text-[10px] sm:text-xs md:text-sm whitespace-nowrap">Projects</a></li>
+      <li><a href="#footer-info" class="nav-link text-[10px] sm:text-xs md:text-sm whitespace-nowrap">Contact</a></li>
+    </ul>
+  </div>
+  <!-- Mobile hamburger -->
+  <button id="nav-toggle" class="sm:hidden flex flex-col gap-[5px] p-3 bg-black rounded-b-xl"
+    aria-label="Toggle menu">
+    <span class="nav-bar w-5 h-px bg-[rgba(225,224,204,.8)] transition-all duration-300 origin-center"></span>
+    <span class="nav-bar w-5 h-px bg-[rgba(225,224,204,.8)] transition-all duration-300"></span>
+    <span class="nav-bar w-5 h-px bg-[rgba(225,224,204,.8)] transition-all duration-300 origin-center"></span>
+  </button>
+</nav>
+<!-- Mobile menu -->
+<div id="nav-mobile" class="sm:hidden fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-[rgba(8,8,8,.97)] pointer-events-none opacity-0 transition-opacity duration-300 no-print">
+  <a href="#about"       class="nav-link text-2xl font-display font-bold mobile-nav-link">About</a>
+  <a href="#experience"  class="nav-link text-2xl font-display font-bold mobile-nav-link">Experience</a>
+  <a href="#skills"      class="nav-link text-2xl font-display font-bold mobile-nav-link">Tech Stack</a>
+  <a href="#project"     class="nav-link text-2xl font-display font-bold mobile-nav-link">Projects</a>
+  <a href="#footer-info" class="nav-link text-2xl font-display font-bold mobile-nav-link">Contact</a>
+</div>
+
 <!-- Cursor glow -->
 <div id="cursor-glow" class="no-print"></div>
 <!--  HERO                                                    -->
@@ -59,14 +91,11 @@ tailwind.config = {
   </div>
 
   <!-- Status bar -->
-  <div class="relative z-10 flex justify-between items-center px-6 md:px-14 pt-7">
+  <div class="relative z-10 flex justify-between items-center px-6 md:px-14 pt-12 md:pt-7">
     <span class="font-mono text-[11px] text-[rgba(225,224,204,.3)] tracking-widest">viet@dev ~ </span>
     <div class="flex gap-2" id="hero-badges">
       <span class="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest px-3 py-1 rounded-full border border-[rgba(225,224,204,.1)] bg-[rgba(225,224,204,.03)] text-[rgba(225,224,204,.55)]">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>Open to Work
-      </span>
-      <span class="hidden sm:flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest px-3 py-1 rounded-full border border-[rgba(225,224,204,.1)] bg-[rgba(225,224,204,.03)] text-[rgba(225,224,204,.55)]">
-        Backend Focus
       </span>
       <span class="hidden md:flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest px-3 py-1 rounded-full border border-[rgba(225,224,204,.1)] bg-[rgba(225,224,204,.03)] text-[rgba(225,224,204,.55)]">
         🇯🇵 5yr
@@ -97,20 +126,33 @@ tailwind.config = {
     <!-- Divider line -->
     <div id="hero-line" class="h-px mb-8" style="background: linear-gradient(90deg, rgba(225,224,204,.38), rgba(225,224,204,.08) 55%, transparent);"></div>
 
-    <!-- Contact -->
-    <div id="hero-contact" class="flex flex-wrap items-center gap-x-5 gap-y-3">
-      <span class="flex items-center gap-2 text-xs text-[rgba(225,224,204,.45)]">📍 Hanoi, Vietnam</span>
-      <span class="text-[rgba(225,224,204,.18)] hidden sm:inline">·</span>
-      <a href="#" onclick="this.href='mailto:'+'viet291993'+'@'+'gmail.com';"
-        class="flex items-center gap-2 text-xs text-[rgba(225,224,204,.45)] hover:text-[#E1E0CC] transition-colors">
-        ✉️ viet291993@gmail.com
+    <!-- Social -->
+    <div id="hero-contact" class="flex flex-wrap items-center gap-3">
+      <!-- GitHub -->
+      <a href="https://github.com/viet291993" target="_blank" rel="noopener"
+        class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] text-[rgba(225,224,204,.42)] hover:text-[#E1E0CC] transition-colors duration-150"
+        style="border:1px solid rgba(225,224,204,.08); background:rgba(225,224,204,.03);">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
       </a>
-      <span class="text-[rgba(225,224,204,.18)] hidden sm:inline">·</span>
-      <a href="tel:0363389498"
-        class="flex items-center gap-2 text-xs text-[rgba(225,224,204,.45)] hover:text-[#E1E0CC] transition-colors">
-        📞 0363 389 498
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/l%C3%AA-vi%E1%BB%87t-465839144/" target="_blank" rel="noopener"
+        class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] text-[rgba(225,224,204,.42)] hover:text-[#E1E0CC] transition-colors duration-150"
+        style="border:1px solid rgba(225,224,204,.08); background:rgba(225,224,204,.03);">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
       </a>
     </div>
+
+    <!-- CTA -->
+    <a id="hero-cta" href="#footer-contact"
+      class="group self-start inline-flex items-center gap-2 mt-8 pl-5 pr-1.5 py-1.5 rounded-full font-medium text-sm text-[#080808] hover:gap-3 transition-all duration-300"
+      style="background:#E1E0CC; opacity:0;">
+      Let's Work Together
+      <span class="flex items-center justify-center w-9 h-9 rounded-full bg-[#080808] group-hover:scale-110 transition-transform duration-300">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E1E0CC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
   </div>
 
   <!-- Scroll cue -->
@@ -132,13 +174,13 @@ tailwind.config = {
   <div class="relative overflow-hidden bg-noise rounded-2xl md:rounded-3xl px-8 md:px-14 py-12 md:py-16"
     style="background:#101010; border:1px solid rgba(225,224,204,.05);">
 
-    <p class="sec-label">// 01 — Professional Summary</p>
+    <p class="sec-label">// About</p>
 
     <h2 class="about-headline font-display text-[#E1E0CC] leading-[1.06] tracking-tight mb-12"
       style="font-size: clamp(26px,4.2vw,58px); max-width:860px;"><span class="ah-seg" style="font-weight:800;">5 years of outsourcing experience</span><span class="ah-seg" style="font-weight:400; color:rgba(225,224,204,.58);"> for the Japanese market.</span></h2>
 
     <p class="char-reveal text-base md:text-lg text-[rgba(225,224,204,.55)] leading-relaxed" style="max-width:740px;">
-      Worked across multiple platforms and languages — from Legacy systems and BI platforms to Low-code. Core strengths include reading and understanding technical specifications (Specs), quickly adapting to existing codebases, and maintaining a high sense of responsibility throughout a demanding outsourcing journey for the most rigorous market.
+      I've worked across multiple platforms and languages — from legacy BI systems to low-code tools — always on the backend side. I read specs carefully, adapt quickly to existing codebases, and take full ownership of what I ship. Five years in Japanese outsourcing taught me to be precise, reliable, and never cut corners.
     </p>
 
   </div>
@@ -151,88 +193,69 @@ tailwind.config = {
 <!-- ════════════════════════════════════════════════════════ -->
 <section id="experience" class="px-6 md:px-14 py-16 md:py-24" style="max-width:1100px; margin:0 auto;">
 
-  <p class="sec-label">// 02 — Work Experience</p>
+  <p class="sec-label">// Experience</p>
 
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
 
     <!-- Card 1 -->
     <div class="exp-card group relative border rounded-2xl p-6 transition-all duration-300"
       style="border-color:rgba(225,224,204,.06); background:rgba(225,224,204,.018);"
-      onmouseenter="this.style.borderColor='rgba(99,102,241,.22)'; this.style.background='rgba(99,102,241,.04)';"
+      onmouseenter="this.style.borderColor='rgba(225,224,204,.14)'; this.style.background='rgba(225,224,204,.035)';"
       onmouseleave="this.style.borderColor='rgba(225,224,204,.06)'; this.style.background='rgba(225,224,204,.018)';">
       <div class="flex flex-wrap items-start justify-between gap-4 mb-3">
         <div>
           <span class="font-mono text-[11px] text-[rgba(225,224,204,.28)] tracking-widest">01</span>
           <h3 class="font-display font-bold text-[#E1E0CC] mt-0.5" style="font-size:clamp(18px,2vw,24px);">GeminiOT Data Analytics System</h3>
         </div>
-        <span class="font-mono text-[13px] px-3 py-1 rounded-full border" style="border-color:rgba(99,102,241,.3); background:rgba(99,102,241,.08); color:rgba(165,180,252,.85);">2023 – 2024</span>
+        <span class="font-mono text-[13px] px-3 py-1 rounded-full border" style="border-color:rgba(225,224,204,.12); background:rgba(225,224,204,.05); color:rgba(225,224,204,.65);">2023 – 2024</span>
       </div>
       <p class="text-sm text-[rgba(225,224,204,.35)] italic mb-4">Onsite at DTS Vietnam · Apache Superset (open source)</p>
       <ul style="display:flex; flex-direction:column; gap:8px;">
-        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(99,102,241,.7); flex-shrink:0; margin-top:2px;">→</span>Researched and customized Superset codebase per Japanese client requirements</li>
-        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(99,102,241,.7); flex-shrink:0; margin-top:2px;">→</span>Built Custom Nodes to extend data connectivity capabilities using React</li>
-        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(99,102,241,.7); flex-shrink:0; margin-top:2px;">→</span>Set up data integration flows using a drag-and-drop flow-based tool</li>
+        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(225,224,204,.35); flex-shrink:0; margin-top:2px;">→</span>Dug into Apache Superset's open-source codebase and customized it to fit Japanese client specs</li>
+        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(225,224,204,.35); flex-shrink:0; margin-top:2px;">→</span>Built custom React nodes to extend the platform's data connectivity</li>
+        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(225,224,204,.35); flex-shrink:0; margin-top:2px;">→</span>Wired up data integration flows via a drag-and-drop pipeline tool</li>
       </ul>
-      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; padding-top:20px; border-top:1px solid rgba(225,224,204,.05);">
-        <span class="chip chip-i">React</span>
-        <span class="chip chip-i">Apache Superset</span>
-        <span class="chip chip-i">Flow-based</span>
-      </div>
     </div>
 
     <!-- Card 2 -->
     <div class="exp-card relative border rounded-2xl p-6 transition-all duration-300"
       style="border-color:rgba(225,224,204,.06); background:rgba(225,224,204,.018);"
-      onmouseenter="this.style.borderColor='rgba(167,139,250,.22)'; this.style.background='rgba(167,139,250,.04)';"
+      onmouseenter="this.style.borderColor='rgba(225,224,204,.14)'; this.style.background='rgba(225,224,204,.035)';"
       onmouseleave="this.style.borderColor='rgba(225,224,204,.06)'; this.style.background='rgba(225,224,204,.018)';">
       <div class="flex flex-wrap items-start justify-between gap-4 mb-3">
         <div>
           <span class="font-mono text-[11px] text-[rgba(225,224,204,.28)] tracking-widest">02</span>
           <h3 class="font-display font-bold text-[#E1E0CC] mt-0.5" style="font-size:clamp(18px,2vw,24px);">BI GalleriaSolo &amp; DataStudio@WEB</h3>
         </div>
-        <span class="font-mono text-[13px] px-3 py-1 rounded-full border" style="border-color:rgba(167,139,250,.3); background:rgba(167,139,250,.08); color:rgba(196,181,253,.85);">2019 – 2024</span>
+        <span class="font-mono text-[13px] px-3 py-1 rounded-full border" style="border-color:rgba(225,224,204,.12); background:rgba(225,224,204,.05); color:rgba(225,224,204,.65);">2019 – 2024</span>
       </div>
       <p class="text-sm text-[rgba(225,224,204,.35)] italic mb-4">Onsite at DTS Vietnam · Reporting &amp; Analytics Dashboard — DTS Japan</p>
       <ul style="display:flex; flex-direction:column; gap:8px;">
-        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span>Maintained Legacy system built with Java Servlet and vanilla JavaScript</li>
-        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span>Fixed bugs, resolved UI lag, improved chart loading speed</li>
-        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span>Added features (CR) and ensured stable system operation</li>
+        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(225,224,204,.35); flex-shrink:0; margin-top:2px;">→</span>Kept a Java Servlet + vanilla JS legacy BI system alive and stable over 5 years</li>
+        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(225,224,204,.35); flex-shrink:0; margin-top:2px;">→</span>Fixed bugs, cut UI lag, and improved chart render speed</li>
+        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(225,224,204,.35); flex-shrink:0; margin-top:2px;">→</span>Shipped change requests (CRs) while keeping the system stable</li>
       </ul>
-      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; padding-top:20px; border-top:1px solid rgba(225,224,204,.05);">
-        <span class="chip chip-p">Java Servlet</span>
-        <span class="chip chip-p">JavaScript</span>
-        <span class="chip chip-p">Legacy</span>
-        <span class="chip chip-p">Dashboard BI</span>
-      </div>
     </div>
 
     <!-- Card 3 -->
     <div class="exp-card relative border rounded-2xl p-6 transition-all duration-300"
       style="border-color:rgba(225,224,204,.06); background:rgba(225,224,204,.018);"
-      onmouseenter="this.style.borderColor='rgba(16,185,129,.22)'; this.style.background='rgba(16,185,129,.04)';"
+      onmouseenter="this.style.borderColor='rgba(225,224,204,.14)'; this.style.background='rgba(225,224,204,.035)';"
       onmouseleave="this.style.borderColor='rgba(225,224,204,.06)'; this.style.background='rgba(225,224,204,.018)';">
       <div class="flex flex-wrap items-start justify-between gap-4 mb-3">
         <div>
           <span class="font-mono text-[11px] text-[rgba(225,224,204,.28)] tracking-widest">03</span>
-          <h3 class="font-display font-bold text-[#E1E0CC] mt-0.5" style="font-size:clamp(18px,2vw,24px);">Multi-platform Outsourcing Projects</h3>
+          <h3 class="font-display font-bold text-[#E1E0CC] mt-0.5" style="font-size:clamp(18px,2vw,24px);">Multi-stack Outsourcing</h3>
         </div>
-        <span class="font-mono text-[13px] px-3 py-1 rounded-full border" style="border-color:rgba(16,185,129,.3); background:rgba(16,185,129,.08); color:rgba(52,211,153,.85);">2019 – 2024</span>
+        <span class="font-mono text-[13px] px-3 py-1 rounded-full border" style="border-color:rgba(225,224,204,.12); background:rgba(225,224,204,.05); color:rgba(225,224,204,.65);">2019 – 2024</span>
       </div>
       <p class="text-sm text-[rgba(225,224,204,.35)] italic mb-4">Onsite at DTS Vietnam · Multi-stack — Japanese Market</p>
       <ul style="display:flex; flex-direction:column; gap:8px;">
-        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(16,185,129,.7); flex-shrink:0; margin-top:2px;">→</span>OutSystems: Built Low-code apps using the drag-and-drop platform</li>
-        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(16,185,129,.7); flex-shrink:0; margin-top:2px;">→</span>Java Selenium: Wrote and operated Automation Test scripts</li>
-        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(16,185,129,.7); flex-shrink:0; margin-top:2px;">→</span>C++: Understood Japanese partner Specs and developed new system modules</li>
-        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(16,185,129,.7); flex-shrink:0; margin-top:2px;">→</span>Python: Automation scripts; UI/UX support with Angular &amp; Flutter</li>
+        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(225,224,204,.35); flex-shrink:0; margin-top:2px;">→</span>Built low-code apps in OutSystems — from drag-and-drop to production</li>
+        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(225,224,204,.35); flex-shrink:0; margin-top:2px;">→</span>Wrote and ran Selenium automation test suites in Java</li>
+        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(225,224,204,.35); flex-shrink:0; margin-top:2px;">→</span>Read Japanese partner specs, then built new C++ system modules from scratch</li>
+        <li class="flex gap-3 text-[15px] text-[rgba(225,224,204,.58)]"><span style="color:rgba(225,224,204,.35); flex-shrink:0; margin-top:2px;">→</span>Wrote Python automation scripts; supported UI work with Angular &amp; Flutter</li>
       </ul>
-      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; padding-top:20px; border-top:1px solid rgba(225,224,204,.05);">
-        <span class="chip chip-g">OutSystems</span>
-        <span class="chip chip-g">Java Selenium</span>
-        <span class="chip chip-g">C++</span>
-        <span class="chip chip-g">Python</span>
-        <span class="chip chip-g">Angular</span>
-        <span class="chip chip-g">Flutter</span>
-      </div>
     </div>
 
   </div>
@@ -244,17 +267,17 @@ tailwind.config = {
 <!-- ════════════════════════════════════════════════════════ -->
 <section id="project" class="px-6 md:px-14 py-16 md:py-24" style="max-width:1100px; margin:0 auto;">
 
-  <p class="sec-label">// 03 — Side Project</p>
+  <p class="sec-label">// Projects</p>
 
   <div class="project-card relative rounded-2xl md:rounded-3xl overflow-hidden"
-    style="border: 1px solid rgba(167,139,250,.22); background: linear-gradient(135deg, #0f0a1e 0%, #0a0a14 100%);">
+    style="border: 1px solid rgba(225,224,204,.06); background: rgba(225,224,204,.018);">
 
     <!-- Top gradient line -->
-    <div style="height:1px; background:linear-gradient(90deg, rgba(167,139,250,.85), rgba(99,102,241,.5), rgba(16,185,129,.25));"></div>
+    <div style="height:1px; background:linear-gradient(90deg, rgba(225,224,204,.2), rgba(225,224,204,.06), transparent);"></div>
 
     <!-- Corner glow -->
     <div class="absolute top-0 right-0 w-72 h-72 pointer-events-none"
-      style="background: radial-gradient(ellipse at top right, rgba(167,139,250,.12) 0%, transparent 70%);"></div>
+      style="background: radial-gradient(ellipse at top right, rgba(225,224,204,.03) 0%, transparent 70%);"></div>
 
     <div class="relative z-10 flex flex-col md:flex-row">
 
@@ -263,93 +286,117 @@ tailwind.config = {
 
         <div class="flex flex-wrap items-start justify-between gap-4 mb-1">
           <span class="font-mono text-[10px] text-[rgba(167,139,250,.5)] tracking-widest uppercase">Side Project · Solo Developer</span>
-          <span class="font-mono text-[13px] px-3 py-1 rounded-full border"
-            style="border-color:rgba(167,139,250,.3); background:rgba(167,139,250,.08); color:rgba(196,181,253,.85);">2024 – present</span>
+          <span class="chip">2024 – present</span>
         </div>
 
-        <h2 class="font-display font-extrabold text-[#E1E0CC] mb-1" style="font-size:clamp(28px,4vw,48px);">An Lac PMS</h2>
-        <p class="text-sm text-[rgba(225,224,204,.38)] italic mb-5">Resort Management System · An Lac Ecofarm, Kim Boi – Hoa Binh</p>
+        <h2 class="font-display font-extrabold text-[#E1E0CC] mb-1" style="font-size:clamp(28px,4vw,48px);">LodgeFlow</h2>
+        <p class="text-sm text-[rgba(225,224,204,.38)] italic mb-5">Resort Management System</p>
 
-        <span class="inline-flex items-center text-[11px] font-medium px-3 py-1 rounded-full mb-6"
-          style="border:1px solid rgba(167,139,250,.22); background:rgba(167,139,250,.08); color:rgba(196,181,253,.85);">
-          BA · System Design · Full Stack
-        </span>
+        <p class="text-sm text-[rgba(225,224,204,.55)] leading-relaxed mb-7" style="max-width:540px;">
+          End-to-end resort management system built from real hospitality workflows — covering the full guest journey from reservation to checkout, with live occupancy tracking and automated billing.
+        </p>
 
-        <ul class="grid md:grid-cols-2 gap-x-10 gap-y-3 mb-8 text-sm text-[rgba(225,224,204,.58)]">
-          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span>Designed full resort operations: Booking, Check-in/out, Folio billing, Housekeeping, F&amp;B, Reporting</span></li>
-          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span><strong class="text-[rgba(225,224,204,.82)]">NestJS 10:</strong> Module-based REST API · JWT + Refresh Token · multi-role auth</span></li>
-          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span><strong class="text-[rgba(225,224,204,.82)]">PostgreSQL:</strong> Prisma ORM · Supabase (prod) · state machine for rooms &amp; bookings</span></li>
-          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span><strong class="text-[rgba(225,224,204,.82)]">Next.js:</strong> React 18 + TypeScript + TailwindCSS · React Query · SSE real-time</span></li>
-          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span>Export quotes / invoices / reports via ExcelJS · Puppeteer + pdf-lib</span></li>
-          <li class="flex gap-3"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span>Deploy: <strong class="text-[rgba(225,224,204,.82)]">Render</strong> (API) · <strong class="text-[rgba(225,224,204,.82)]">Vercel</strong> (UI)</span></li>
-          <li class="flex gap-3 md:col-span-2"><span style="color:rgba(167,139,250,.7); flex-shrink:0; margin-top:2px;">→</span><span style="color:rgba(196,181,253,.7);">Roadmap: Redis cache · Docker + GitHub Actions CI/CD · Unit Test · Sentry</span></li>
+        <ul class="flex flex-col gap-3 text-sm text-[rgba(225,224,204,.58)]">
+          <li class="flex gap-3">
+            <span style="color:rgba(225,224,204,.3); flex-shrink:0; margin-top:2px;">→</span>
+            <span>Designed 8 operational modules end-to-end: <strong class="text-[rgba(225,224,204,.75)]">Booking, Check-in/out, Folio billing, Housekeeping, F&amp;B, Reporting</strong></span>
+          </li>
+          <li class="flex gap-3">
+            <span style="color:rgba(225,224,204,.3); flex-shrink:0; margin-top:2px;">→</span>
+            <span>Backend: <strong class="text-[rgba(225,224,204,.75)]">NestJS</strong> module-based API · JWT + Refresh Token · multi-role auth · state machine for room &amp; booking status</span>
+          </li>
+          <li class="flex gap-3">
+            <span style="color:rgba(225,224,204,.3); flex-shrink:0; margin-top:2px;">→</span>
+            <span>Frontend: <strong class="text-[rgba(225,224,204,.75)]">Next.js</strong> + React Query + SSE real-time · PDF/Excel export via Puppeteer &amp; ExcelJS</span>
+          </li>
+          <li class="flex gap-3">
+            <span style="color:rgba(225,224,204,.3); flex-shrink:0; margin-top:2px;">→</span>
+            <span>Data: <strong class="text-[rgba(225,224,204,.75)]">PostgreSQL</strong> · Prisma ORM · Supabase (prod) · deployed on Render + Vercel</span>
+          </li>
         </ul>
 
-        <div style="display:flex; flex-wrap:wrap; gap:8px; padding-top:24px; border-top:1px solid rgba(225,224,204,.05);">
-          <span class="chip chip-p">NestJS</span>
-          <span class="chip chip-p">PostgreSQL</span>
-          <span class="chip chip-p">Prisma</span>
-          <span class="chip chip-p">Next.js</span>
-          <span class="chip chip-p">React Query</span>
-          <span class="chip chip-p">JWT Auth</span>
-          <span class="chip chip-p">SSE</span>
-          <span class="chip chip-p">ExcelJS</span>
-          <span class="chip chip-p">Puppeteer</span>
-        </div>
       </div>
 
-      <!-- Right 30%: GSAP animated PMS dashboard -->
-      <div id="pms-visual" class="hidden md:flex flex-col justify-center gap-3 p-8 pl-6"
-        style="flex: 3; min-width: 220px; max-width: 280px; border-left: 1px solid rgba(225,224,204,.05);">
+      <!-- Right: build journey -->
+      <div id="pms-visual" class="hidden md:flex flex-col justify-center p-8 pl-6"
+        style="flex: 3; min-width: 240px; max-width: 290px; border-left: 1px solid rgba(225,224,204,.05);">
 
-        <p style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(225,224,204,.18); margin-bottom:2px;">live data</p>
+        <p class="font-mono text-[9px] text-[rgba(225,224,204,.22)] tracking-[.2em] uppercase mb-6">// build journey</p>
 
-        <!-- Occupancy -->
-        <div class="pms-stat" style="background:rgba(99,102,241,.07); border:1px solid rgba(99,102,241,.15); border-radius:10px; padding:14px 16px;">
-          <p style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:rgba(165,180,252,.45); margin-bottom:8px;">Occupancy</p>
-          <p style="font-family:'Syne',sans-serif; font-size:30px; font-weight:800; color:#a5b4fc; line-height:1; margin-bottom:10px;">
-            <span id="pms-occ">0</span><span style="font-size:14px; opacity:.5;">%</span>
-          </p>
-          <div style="background:rgba(99,102,241,.12); border-radius:3px; height:3px; overflow:hidden;">
-            <div id="pms-bar" style="height:100%; width:0%; background:linear-gradient(90deg,#6366f1,#a5b4fc); border-radius:3px;"></div>
-          </div>
-        </div>
+        <div class="flex flex-col" style="gap: 0;">
 
-        <!-- Room Status -->
-        <div class="pms-stat" style="background:rgba(16,185,129,.05); border:1px solid rgba(16,185,129,.13); border-radius:10px; padding:14px 16px;">
-          <p style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:rgba(52,211,153,.45); margin-bottom:10px;">Room Status</p>
-          <div style="display:flex; flex-direction:column; gap:7px;">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <div style="display:flex; align-items:center; gap:7px;">
-                <div style="width:6px; height:6px; border-radius:50%; background:#34d399; box-shadow:0 0 6px rgba(52,211,153,.7);"></div>
-                <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(225,224,204,.4);">Available</span>
-              </div>
-              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(52,211,153,.85);">4</span>
+          <!-- Step 1: done -->
+          <div class="rmap-step flex gap-3">
+            <div class="flex flex-col items-center" style="width:16px; flex-shrink:0;">
+              <div class="rmap-dot" style="width:8px; height:8px; border-radius:50%; background:rgba(225,224,204,.7); margin-top:3px; flex-shrink:0;"></div>
+              <div class="rmap-line" style="width:1px; flex:1; background:rgba(225,224,204,.08); min-height:28px;"></div>
             </div>
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <div style="display:flex; align-items:center; gap:7px;">
-                <div style="width:6px; height:6px; border-radius:50%; background:#6366f1; box-shadow:0 0 6px rgba(99,102,241,.7);"></div>
-                <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(225,224,204,.4);">Occupied</span>
-              </div>
-              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(165,180,252,.85);">18</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <div style="display:flex; align-items:center; gap:7px;">
-                <div style="width:6px; height:6px; border-radius:50%; background:#f59e0b;"></div>
-                <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(225,224,204,.4);">Cleaning</span>
-              </div>
-              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(251,191,36,.8);">2</span>
+            <div class="rmap-text pb-5">
+              <p class="font-mono text-[11px] text-[rgba(225,224,204,.72)]">System Design</p>
+              <p class="font-mono text-[9px] text-[rgba(225,224,204,.28)] mt-0.5">BA · flows · schema</p>
             </div>
           </div>
-        </div>
 
-        <!-- Revenue -->
-        <div class="pms-stat" style="background:rgba(167,139,250,.05); border:1px solid rgba(167,139,250,.13); border-radius:10px; padding:14px 16px;">
-          <p style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:rgba(196,181,253,.45); margin-bottom:6px;">Revenue / mo</p>
-          <p style="font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:#c4b5fd; line-height:1.2; margin-bottom:5px;">₫18.4M</p>
-          <p style="font-family:'JetBrains Mono',monospace; font-size:9px; color:rgba(52,211,153,.6);">↑ +8.2% vs prev month</p>
-        </div>
+          <!-- Step 2: done -->
+          <div class="rmap-step flex gap-3">
+            <div class="flex flex-col items-center" style="width:16px; flex-shrink:0;">
+              <div class="rmap-dot" style="width:8px; height:8px; border-radius:50%; background:rgba(225,224,204,.7); margin-top:3px; flex-shrink:0;"></div>
+              <div class="rmap-line" style="width:1px; flex:1; background:rgba(225,224,204,.08); min-height:28px;"></div>
+            </div>
+            <div class="rmap-text pb-5">
+              <p class="font-mono text-[11px] text-[rgba(225,224,204,.72)]">Backend Core</p>
+              <p class="font-mono text-[9px] text-[rgba(225,224,204,.28)] mt-0.5">NestJS · auth · state machine</p>
+            </div>
+          </div>
 
+          <!-- Step 3: done -->
+          <div class="rmap-step flex gap-3">
+            <div class="flex flex-col items-center" style="width:16px; flex-shrink:0;">
+              <div class="rmap-dot" style="width:8px; height:8px; border-radius:50%; background:rgba(225,224,204,.7); margin-top:3px; flex-shrink:0;"></div>
+              <div class="rmap-line" style="width:1px; flex:1; background:rgba(225,224,204,.08); min-height:28px;"></div>
+            </div>
+            <div class="rmap-text pb-5">
+              <p class="font-mono text-[11px] text-[rgba(225,224,204,.72)]">Frontend</p>
+              <p class="font-mono text-[9px] text-[rgba(225,224,204,.28)] mt-0.5">Next.js · SSE · React Query</p>
+            </div>
+          </div>
+
+          <!-- Step 4: done -->
+          <div class="rmap-step flex gap-3">
+            <div class="flex flex-col items-center" style="width:16px; flex-shrink:0;">
+              <div class="rmap-dot" style="width:8px; height:8px; border-radius:50%; background:rgba(225,224,204,.7); margin-top:3px; flex-shrink:0;"></div>
+              <div class="rmap-line" style="width:1px; flex:1; background:rgba(225,224,204,.08); min-height:28px;"></div>
+            </div>
+            <div class="rmap-text pb-5">
+              <p class="font-mono text-[11px] text-[rgba(225,224,204,.72)]">Export Layer</p>
+              <p class="font-mono text-[9px] text-[rgba(225,224,204,.28)] mt-0.5">PDF · Excel · reports</p>
+            </div>
+          </div>
+
+          <!-- Step 5: done -->
+          <div class="rmap-step flex gap-3">
+            <div class="flex flex-col items-center" style="width:16px; flex-shrink:0;">
+              <div class="rmap-dot" style="width:8px; height:8px; border-radius:50%; background:rgba(225,224,204,.7); margin-top:3px; flex-shrink:0;"></div>
+              <div class="rmap-line" style="width:1px; flex:1; background:rgba(225,224,204,.08); min-height:28px;"></div>
+            </div>
+            <div class="rmap-text pb-5">
+              <p class="font-mono text-[11px] text-[rgba(225,224,204,.72)]">Deploy</p>
+              <p class="font-mono text-[9px] text-[rgba(225,224,204,.28)] mt-0.5">Render · Vercel · Supabase</p>
+            </div>
+          </div>
+
+          <!-- Step 6: upcoming -->
+          <div class="rmap-step flex gap-3">
+            <div class="flex flex-col items-center" style="width:16px; flex-shrink:0;">
+              <div class="rmap-dot-pending" style="width:8px; height:8px; border-radius:50%; border:1px dashed rgba(225,224,204,.25); margin-top:3px; flex-shrink:0;"></div>
+            </div>
+            <div class="rmap-text">
+              <p class="font-mono text-[11px] text-[rgba(225,224,204,.28)]">Hardening</p>
+              <p class="font-mono text-[9px] text-[rgba(225,224,204,.18)] mt-0.5">Redis · Docker CI/CD · Tests</p>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -362,51 +409,51 @@ tailwind.config = {
 <!-- ════════════════════════════════════════════════════════ -->
 <section id="skills" class="px-6 md:px-14 py-16 md:py-24" style="max-width:1100px; margin:0 auto;">
 
-  <p class="sec-label">// 04 — Skills</p>
+  <p class="sec-label">// Tech Stack</p>
 
-  <div class="grid md:grid-cols-2 gap-10">
+  <div class="flex flex-col gap-10">
 
+    <!-- Languages & Frameworks -->
     <div>
-      <p class="font-mono text-[10px] text-[rgba(225,224,204,.28)] tracking-[.15em] uppercase mb-4">Languages &amp; Frameworks</p>
-      <div class="skill-group" style="display:flex; flex-wrap:wrap; gap:8px;">
-        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/java/java-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">Java</span>
-        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/spring/spring-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">Spring Boot</span>
-        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nodejs/nodejs-plain.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">Node.js</span>
-        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nestjs/nestjs-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">NestJS</span>
-        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/typescript/typescript-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">TypeScript</span>
-        <span class="chip chip-ip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/react/react-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">React</span>
+      <p class="font-mono text-[10px] text-[rgba(225,224,204,.55)] tracking-[.15em] uppercase mb-4">Languages &amp; Frameworks</p>
+      <div class="skill-group grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2">
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/java/java-original.svg" alt="" loading="lazy"><span class="skill-name">Java</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/spring/spring-original.svg" alt="" loading="lazy"><span class="skill-name">Spring Boot</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nodejs/nodejs-plain.svg" alt="" loading="lazy"><span class="skill-name">Node.js</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nestjs/nestjs-original.svg" alt="" loading="lazy"><span class="skill-name">NestJS</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/typescript/typescript-original.svg" alt="" loading="lazy"><span class="skill-name">TypeScript</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/react/react-original.svg" alt="" loading="lazy"><span class="skill-name">React</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nextjs/nextjs-original.svg" alt="" loading="lazy"><span class="skill-name">Next.js</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/javascript/javascript-original.svg" alt="" loading="lazy"><span class="skill-name">JavaScript</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/html5/html5-original.svg" alt="" loading="lazy"><span class="skill-name">HTML5</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/css3/css3-original.svg" alt="" loading="lazy"><span class="skill-name">CSS3</span></div>
       </div>
     </div>
 
+    <!-- Databases -->
     <div>
-      <p class="font-mono text-[10px] text-[rgba(225,224,204,.28)] tracking-[.15em] uppercase mb-4">Databases</p>
-      <div class="skill-group" style="display:flex; flex-wrap:wrap; gap:8px;">
-        <span class="chip chip-g"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">SQL Server</span>
-        <span class="chip chip-g"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mysql/mysql-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">MySQL</span>
-        <span class="chip chip-g"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/postgresql/postgresql-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">PostgreSQL</span>
-        <span class="chip chip-g"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mariadb/mariadb-original.svg" alt="" width="13" height="13" style="margin-right:5px;flex-shrink:0;" loading="lazy">MariaDB</span>
+      <p class="font-mono text-[10px] text-[rgba(225,224,204,.55)] tracking-[.15em] uppercase mb-4">Databases</p>
+      <div class="skill-group grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2">
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="" loading="lazy"><span class="skill-name">SQL Server</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mysql/mysql-original.svg" alt="" loading="lazy"><span class="skill-name">MySQL</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/postgresql/postgresql-original.svg" alt="" loading="lazy"><span class="skill-name">PostgreSQL</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mariadb/mariadb-original.svg" alt="" loading="lazy"><span class="skill-name">MariaDB</span></div>
       </div>
     </div>
 
+    <!-- Tools & Others -->
     <div>
-      <p class="font-mono text-[10px] text-[rgba(225,224,204,.28)] tracking-[.15em] uppercase mb-4">Tools &amp; Platforms</p>
-      <div class="skill-group" style="display:flex; flex-wrap:wrap; gap:8px;">
-        <span class="chip">Apache Superset</span>
-        <span class="chip">OutSystems</span>
-        <span class="chip">Prisma ORM</span>
-        <span class="chip">Git</span>
-        <span class="chip">Java Selenium</span>
-        <span class="chip">Puppeteer</span>
-      </div>
-    </div>
-
-    <div>
-      <p class="font-mono text-[10px] text-[rgba(225,224,204,.28)] tracking-[.15em] uppercase mb-4">Also Used</p>
-      <div class="skill-group" style="display:flex; flex-wrap:wrap; gap:8px;">
-        <span class="chip">Python</span>
-        <span class="chip">C++</span>
-        <span class="chip">Angular</span>
-        <span class="chip">Flutter</span>
+      <p class="font-mono text-[10px] text-[rgba(225,224,204,.55)] tracking-[.15em] uppercase mb-4">Tools &amp; Others</p>
+      <div class="skill-group grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2">
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/git/git-original.svg" alt="" loading="lazy"><span class="skill-name">Git</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/linux/linux-original.svg" alt="" loading="lazy"><span class="skill-name">Linux</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/python/python-original.svg" alt="" loading="lazy"><span class="skill-name">Python</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/angularjs/angularjs-original.svg" alt="" loading="lazy"><span class="skill-name">Angular</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/flutter/flutter-original.svg" alt="" loading="lazy"><span class="skill-name">Flutter</span></div>
+        <div class="skill-icon-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/cplusplus/cplusplus-original.svg" alt="" loading="lazy"><span class="skill-name">C++</span></div>
+        <div class="skill-icon-card"><div class="skill-initial">PR</div><span class="skill-name">Prisma</span></div>
+        <div class="skill-icon-card"><div class="skill-initial">SE</div><span class="skill-name">Selenium</span></div>
+        <div class="skill-icon-card"><div class="skill-initial">PP</div><span class="skill-name">Puppeteer</span></div>
       </div>
     </div>
 
@@ -417,86 +464,116 @@ tailwind.config = {
 <!-- ════════════════════════════════════════════════════════ -->
 <!--  FOOTER INFO                                             -->
 <!-- ════════════════════════════════════════════════════════ -->
-<section id="footer-info" class="px-6 md:px-14 py-16 md:py-24"
-  style="max-width:1100px; margin:0 auto; border-top:1px solid rgba(225,224,204,.06);">
+<section id="footer-info" style="background:#101010; border-top:1px solid rgba(225,224,204,.06);">
+  <div class="px-6 md:px-14 py-16 md:py-24" style="max-width:1100px; margin:0 auto;">
 
-  <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+  <!-- Stacked rows: Goals / Ideal Role / Education -->
+  <div style="display:flex; flex-direction:column;">
 
-    <!-- Mục tiêu -->
-    <div class="footer-col">
-      <p class="font-mono text-[10px] text-[rgba(225,224,204,.32)] tracking-[.25em] uppercase mb-5">// Goals</p>
-      <div style="display:flex; flex-direction:column; gap:14px;">
-        <div class="flex gap-3">
-          <div style="width:6px; height:6px; border-radius:50%; background:#818cf8; flex-shrink:0; margin-top:6px;"></div>
-          <p class="text-sm text-[rgba(225,224,204,.52)] leading-relaxed">
-            <strong class="text-[rgba(225,224,204,.82)]">Short-term:</strong> Specialize in Backend · Microservices · Cloud Design Patterns
-          </p>
-        </div>
-        <div class="flex gap-3">
-          <div style="width:6px; height:6px; border-radius:50%; background:#a78bfa; flex-shrink:0; margin-top:6px;"></div>
-          <p class="text-sm text-[rgba(225,224,204,.52)] leading-relaxed">
-            <strong class="text-[rgba(225,224,204,.82)]">Long-term:</strong> Backend Engineer building stable, High Traffic / Large Scale systems
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Học vấn -->
-    <div class="footer-col">
-      <p class="font-mono text-[10px] text-[rgba(225,224,204,.32)] tracking-[.25em] uppercase mb-5">// Education</p>
-      <div style="border:1px solid rgba(225,224,204,.07); background:rgba(225,224,204,.02); border-radius:12px; padding:16px;">
-        <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
-          <span class="chip chip-g" style="font-size:10px;">Graduated 2019</span>
-          <span class="chip" style="font-size:10px;">Grade: Distinction</span>
-        </div>
-        <p class="font-display font-bold text-[#E1E0CC] text-base mb-0.5">FPT Polytechnic College</p>
-        <p class="text-xs text-[rgba(225,224,204,.36)]">Software Applications · 2017–2019</p>
-      </div>
-    </div>
-
-    <!-- Mong muốn -->
-    <div class="footer-col">
-      <p class="font-mono text-[10px] text-[rgba(225,224,204,.32)] tracking-[.25em] uppercase mb-5">// Preferences</p>
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <div>
-          <p class="font-mono text-[10px] text-[rgba(225,224,204,.25)] uppercase tracking-widest mb-2">Position</p>
-          <div style="display:flex; flex-wrap:wrap; gap:6px;">
-            <span class="chip chip-ip">Backend Developer</span>
-            <span class="chip">Product Company</span>
+    <!-- Goals -->
+    <div class="footer-col" style="padding:32px 0; border-bottom:1px solid rgba(225,224,204,.06);">
+      <div class="footer-row-inner">
+        <p class="font-mono text-[10px] text-[rgba(225,224,204,.62)] tracking-[.25em] uppercase" style="padding-top:2px;">// Goals</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; border-left:2px solid rgba(225,224,204,.18); padding-left:20px;">
+          <div>
+            <p class="font-mono text-[10px] text-[rgba(225,224,204,.48)] tracking-widest uppercase mb-2">Short-term</p>
+            <p class="text-[rgba(225,224,204,.72)] leading-relaxed text-sm">Specialize in Backend · Microservices · Cloud Design Patterns</p>
           </div>
-        </div>
-        <div>
-          <p class="font-mono text-[10px] text-[rgba(225,224,204,.25)] uppercase tracking-widest mb-2">Location</p>
-          <div style="display:flex; flex-wrap:wrap; gap:6px;">
-            <span class="chip">Hanoi</span>
-            <span class="chip">Remote OK</span>
-            <span class="chip">Hybrid</span>
-          </div>
-        </div>
-        <div>
-          <p class="font-mono text-[10px] text-[rgba(225,224,204,.25)] uppercase tracking-widest mb-2">Strengths</p>
-          <div style="display:flex; flex-wrap:wrap; gap:6px;">
-            <span class="chip" style="font-size:10px;">Disciplined</span>
-            <span class="chip" style="font-size:10px;">Accountable</span>
-            <span class="chip" style="font-size:10px;">JP Market</span>
-            <span class="chip" style="font-size:10px;">Self-learning</span>
+          <div>
+            <p class="font-mono text-[10px] text-[rgba(225,224,204,.48)] tracking-widest uppercase mb-2">Long-term</p>
+            <p class="text-[rgba(225,224,204,.72)] leading-relaxed text-sm">Backend Engineer building stable, High Traffic / Large Scale systems</p>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Ideal Role -->
+    <div class="footer-col" style="padding:32px 0; border-bottom:1px solid rgba(225,224,204,.06);">
+      <div class="footer-row-inner">
+        <p class="font-mono text-[10px] text-[rgba(225,224,204,.62)] tracking-[.25em] uppercase" style="padding-top:2px;">// Ideal Role</p>
+        <div style="display:flex; gap:40px; flex-wrap:wrap; border-left:2px solid rgba(225,224,204,.18); padding-left:20px;">
+          <div>
+            <p class="font-mono text-[10px] text-[rgba(225,224,204,.48)] uppercase tracking-widest mb-2">Position</p>
+            <p class="text-sm text-[rgba(225,224,204,.72)]">Backend Developer · Product Company</p>
+          </div>
+          <div>
+            <p class="font-mono text-[10px] text-[rgba(225,224,204,.48)] uppercase tracking-widest mb-2">Location</p>
+            <p class="text-sm text-[rgba(225,224,204,.72)]">Hanoi · Remote OK · Hybrid</p>
+          </div>
+          <div>
+            <p class="font-mono text-[10px] text-[rgba(225,224,204,.48)] uppercase tracking-widest mb-2">Strengths</p>
+            <p class="text-sm text-[rgba(225,224,204,.72)]">Disciplined · Accountable · JP Market · Self-learning</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="footer-col" style="padding:32px 0;">
+      <div class="footer-row-inner">
+        <p class="font-mono text-[10px] text-[rgba(225,224,204,.62)] tracking-[.25em] uppercase" style="padding-top:2px;">// Education</p>
+        <div style="border-left:2px solid rgba(225,224,204,.18); padding-left:20px;">
+          <p class="font-display font-bold text-[#E1E0CC] mb-1" style="font-size:16px;">FPT Polytechnic College</p>
+          <p class="text-xs text-[rgba(225,224,204,.55)] mb-1">Software Applications · 2017–2019</p>
+          <p class="text-xs text-[rgba(225,224,204,.45)]">Graduated 2019 · Distinction</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Contact CTA -->
+  <div id="footer-contact" style="margin-top:72px; padding:48px 40px; border:1px solid rgba(225,224,204,.07); border-radius:20px; background:rgba(225,224,204,.02); text-align:center; opacity:0;">
+    <p class="font-mono text-[10px] text-[rgba(225,224,204,.32)] tracking-[.3em] uppercase mb-6">// Get in touch</p>
+    <h2 class="font-display font-bold" style="font-size:clamp(2rem,5vw,3.4rem); line-height:1.1; color:#E1E0CC; letter-spacing:-.02em; margin-bottom:20px;">
+      Let's build something<br>
+      <span style="color:rgba(225,224,204,.28);">together.</span>
+    </h2>
+    <p class="text-sm text-[rgba(225,224,204,.45)] leading-relaxed mb-8" style="max-width:450px; margin-left:auto; margin-right:auto;">
+      Have an interesting project or opportunity? I'd love to hear about it.
+    </p>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+        <a href="mailto:viet291993@gmail.com" class="group inline-flex items-center gap-2 pl-6 pr-2 py-2.5 rounded-full font-medium hover:gap-3 transition-all duration-300" style="background:#E1E0CC; color:#080808; font-size:15px;">
+          Send an email
+          <span style="display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:#080808; transition:transform .3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E1E0CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+        <p class="font-mono" style="font-size:11px; color:rgba(225,224,204,.38);">viet291993@gmail.com</p>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <a href="https://www.linkedin.com/in/l%C3%AA-vi%E1%BB%87t-465839144/" target="_blank" rel="noopener" aria-label="LinkedIn" class="inline-flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200" style="border:1px solid rgba(225,224,204,.12); color:rgba(225,224,204,.55); background:transparent;" onmouseover="this.style.borderColor='rgba(225,224,204,.28)';this.style.color='#E1E0CC'" onmouseout="this.style.borderColor='rgba(225,224,204,.12)';this.style.color='rgba(225,224,204,.55)'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://github.com/viet291993" target="_blank" rel="noopener" aria-label="GitHub" class="inline-flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200" style="border:1px solid rgba(225,224,204,.12); color:rgba(225,224,204,.55); background:transparent;" onmouseover="this.style.borderColor='rgba(225,224,204,.28)';this.style.color='#E1E0CC'" onmouseout="this.style.borderColor='rgba(225,224,204,.12)';this.style.color='rgba(225,224,204,.55)'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- Bottom nav -->
-  <div style="margin-top:56px; padding-top:28px; border-top:1px solid rgba(225,224,204,.05); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-    <p class="font-display font-bold" style="font-size:20px; color:rgba(225,224,204,.18);">Le Duc Viet</p>
-    <div style="display:flex; gap:2px; padding:3px; border:1px solid rgba(225,224,204,.1); background:rgba(225,224,204,.03); border-radius:8px;">
-      <a href="v1.html" style="padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(225,224,204,.4); text-decoration:none; border-radius:5px; transition:color .15s;" onmouseover="this.style.color='#E1E0CC'" onmouseout="this.style.color='rgba(225,224,204,.4)'">V1</a>
-      <span style="padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; background:#E1E0CC; color:#080808; border-radius:5px;">V2</span>
+  <div style="margin-top:40px; padding-top:28px; border-top:1px solid rgba(225,224,204,.05); display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px;">
+    <!-- Tagline trái -->
+    <p class="font-mono" style="font-size:11px; color:rgba(225,224,204,.28);">// Built to last, not just to demo.</p>
+    <!-- Copyright giữa -->
+    <p class="font-mono" style="font-size:11px; color:rgba(225,224,204,.22); white-space:nowrap;">© 2026 Le Duc Viet</p>
+    <!-- Back to top phải -->
+    <div style="display:flex; justify-content:flex-end; align-items:center; gap:16px;">
+      <a href="#hero" class="font-mono" style="font-size:11px; color:rgba(225,224,204,.28); text-decoration:none; transition:color .15s;" onmouseover="this.style.color='rgba(225,224,204,.7)'" onmouseout="this.style.color='rgba(225,224,204,.28)'">↑ Back to top</a>
+      <div style="display:flex; align-items:center; gap:6px;" title="Switch between design versions">
+        <span class="font-mono" style="font-size:10px; color:rgba(225,224,204,.25);">design</span>
+        <div style="display:flex; gap:2px; padding:3px; border:1px solid rgba(225,224,204,.1); background:rgba(225,224,204,.03); border-radius:8px;">
+          <a href="v1.html" title="Version 1 — previous design" style="padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(225,224,204,.4); text-decoration:none; border-radius:5px; transition:color .15s;" onmouseover="this.style.color='#E1E0CC'" onmouseout="this.style.color='rgba(225,224,204,.4)'">V1</a>
+          <span title="Version 2 — current design" style="padding:4px 10px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; background:#E1E0CC; color:#080808; border-radius:5px;">V2</span>
+        </div>
+      </div>
     </div>
   </div>
 
-</section>
+  </div><!-- /inner -->
+</section> 
 
 
 <!-- ════════════════════════════════════════════════════════ -->

@@ -7,6 +7,7 @@ tl.to('#hero-name-1',  { y: 0, opacity: 1, duration: 1.0 },      0.1)
   .to('#hero-pre',     { y: 0, opacity: 1, duration: 0.65 },     0.52)
   .to('#hero-line',    { width: '100%', duration: 0.9, ease: 'power2.inOut' }, 0.78)
   .to('#hero-contact', { y: 0, opacity: 1, duration: 0.6 },      0.88)
+  .to('#hero-cta',     { y: 0, opacity: 1, duration: 0.6, ease: 'cubic-bezier(0.22,1,0.36,1)' }, 1.05)
   .to('#hero-scroll',  { opacity: 1, duration: 0.5 },            1.15);
 
 /* ══ SECTION LABELS ══ */
@@ -99,6 +100,16 @@ gsap.to('.footer-col', {
   scrollTrigger: { trigger: '#footer-info', start: 'top 80%', once: true }
 });
 
+/* ══ FOOTER CONTACT CTA ══ */
+gsap.fromTo('#footer-contact',
+  { y: 40, opacity: 0 },
+  {
+    y: 0, opacity: 1,
+    duration: 0.85, ease: 'power3.out',
+    scrollTrigger: { trigger: '#footer-contact', start: 'top 88%', once: true }
+  }
+);
+
 /* ══ CURSOR GLOW ══ */
 (function() {
   const glow = document.getElementById('cursor-glow');
@@ -135,41 +146,110 @@ gsap.utils.toArray('.chip').forEach(chip => {
   });
 });
 
-/* ══ PMS DASHBOARD VISUAL ══ */
+/* ══ BUILD JOURNEY TIMELINE ══ */
 (function() {
+  if (window.innerWidth < 768) return;
+
   const visual = document.querySelector('#pms-visual');
   if (!visual) return;
 
-  ScrollTrigger.create({
-    trigger: visual,
-    start: 'top 80%',
-    once: true,
-    onEnter() {
-      gsap.fromTo('.pms-stat',
-        { x: 28, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.55, ease: 'power3.out', stagger: 0.14 }
+  const dots    = visual.querySelectorAll('.rmap-dot');
+  const lines   = visual.querySelectorAll('.rmap-line');
+  const texts   = visual.querySelectorAll('.rmap-text');
+  const pending = visual.querySelector('.rmap-dot-pending');
+
+  function runTimeline() {
+    dots.forEach((dot, i) => {
+      const d = i * 0.16;
+      gsap.fromTo(dot,
+        { scale: 0, opacity: 0, transformOrigin: 'center center' },
+        { scale: 1, opacity: 1, duration: 0.32, ease: 'back.out(2.5)', delay: d }
       );
-
-      const occEl = document.getElementById('pms-occ');
-      if (occEl) {
-        const obj = { val: 0 };
-        gsap.to(obj, {
-          val: 84, duration: 1.6, ease: 'power2.out', delay: 0.25,
-          onUpdate() { occEl.textContent = Math.round(obj.val); }
-        });
+      if (texts[i]) {
+        gsap.fromTo(texts[i],
+          { x: -10, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.38, ease: 'power2.out', delay: d + 0.06 }
+        );
       }
+      if (lines[i]) {
+        gsap.fromTo(lines[i],
+          { scaleY: 0, transformOrigin: 'top center' },
+          { scaleY: 1, duration: 0.28, ease: 'power2.inOut', delay: d + 0.22 }
+        );
+      }
+    });
 
-      gsap.to('#pms-bar', { width: '84%', duration: 1.5, ease: 'power2.out', delay: 0.25 });
-
-      gsap.delayedCall(0.95, () => {
-        gsap.utils.toArray('.pms-stat').forEach((card, i) => {
-          gsap.to(card, {
-            y: -7, duration: 2.2 + i * 0.5,
-            ease: 'sine.inOut', repeat: -1, yoyo: true, delay: i * 0.45
-          });
+    if (pending) {
+      const pd = dots.length * 0.16 + 0.1;
+      gsap.fromTo(pending,
+        { scale: 0, opacity: 0, transformOrigin: 'center center' },
+        { scale: 1, opacity: 1, duration: 0.32, ease: 'back.out(2)', delay: pd }
+      );
+      if (texts[texts.length - 1]) {
+        gsap.fromTo(texts[texts.length - 1],
+          { x: -10, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.38, ease: 'power2.out', delay: pd + 0.06 }
+        );
+      }
+      gsap.delayedCall(pd + 0.5, () => {
+        gsap.to(pending, {
+          opacity: 0.15, scale: 1.45, duration: 1.1,
+          ease: 'sine.inOut', repeat: -1, yoyo: true
         });
       });
     }
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      obs.disconnect();
+      runTimeline();
+    }
+  }, { threshold: 0.1 });
+
+  obs.observe(visual);
+})();
+
+/* ══ MOBILE NAV ══ */
+(function() {
+  const toggle = document.getElementById('nav-toggle');
+  const menu   = document.getElementById('nav-mobile');
+  if (!toggle || !menu) return;
+  let open = false;
+  const bars = toggle.querySelectorAll('.nav-bar');
+  function setOpen(val) {
+    open = val;
+    menu.style.opacity = open ? '1' : '0';
+    menu.style.pointerEvents = open ? 'auto' : 'none';
+    bars[0].style.transform = open ? 'translateY(6px) rotate(45deg)' : '';
+    bars[1].style.opacity   = open ? '0' : '1';
+    bars[2].style.transform = open ? 'translateY(-6px) rotate(-45deg)' : '';
+  }
+  toggle.addEventListener('click', () => setOpen(!open));
+  menu.querySelectorAll('.mobile-nav-link').forEach(l =>
+    l.addEventListener('click', () => setOpen(false))
+  );
+})();
+
+/* ══ ACTIVE NAV ══ */
+(function() {
+  const sections = ['hero','about','experience','project','skills','footer-info'];
+  const links = {};
+  sections.forEach(id => {
+    const a = document.querySelector(`a[href="#${id}"]`);
+    if (a) links[id] = a;
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(l => l.classList.remove('active'));
+        if (links[e.target.id]) links[e.target.id].classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) obs.observe(el);
   });
 })();
 
@@ -179,7 +259,7 @@ window.addEventListener('beforeprint', () => {
     '#hero-name-1','#hero-name-2','#hero-pre','#hero-contact','#hero-scroll',
     '#hero-video-frame',
     '.ah-word','.exp-card','.project-card','.footer-col','.sec-label',
-    '.pms-stat',
+    '.pms-stat','#footer-contact',
   ], { clearProps: 'all' });
   document.querySelectorAll('.char').forEach(c => c.style.opacity = '1');
   document.getElementById('hero-line').style.width = '100%';
